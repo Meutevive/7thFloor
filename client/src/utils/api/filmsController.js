@@ -13,8 +13,8 @@ export const addfilm = async(filmValues)=>{
         formData.append('description', filmValues.description)
         formData.append('pubDate', filmValues.pubDate)
         formData.append('genres', filmValues.genres)
-        formData.append('actor', filmValues.actorFirstname)
-        formData.append('director', filmValues.directorsFirstname)
+        /*formData.append('actor', filmValues.actorFirstname)
+        formData.append('director', filmValues.directorsFirstname)*/
         formData.append('file', filmValues.image)
         const requestOptions = {
                 method: 'POST',

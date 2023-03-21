@@ -3,11 +3,17 @@ import {Search} from "../../components/forms/search/Search";
 import {Link, useNavigate} from "react-router-dom";
 import { FilmsTable } from "../../components/table/admin/Films";
 import { useEffect, useState } from "react";
-import { filmInitialValues, validateFilm } from "../../services/constants/admin/constants";
+import {
+    filmInitialValues,
+    selectedFilmsTypes,
+    selectedListGenres,
+    validateFilm
+} from "../../services/constants/admin/constants";
 import { addfilm } from "../../utils/api/filmsController";
 import { TextFieldLarge } from "../../components/forms/TextField/TextFieldLarge";
 import { Button } from "../../components/buttons/Button";
 import { TextArea } from "../../components/forms/textarea/TextArea";
+import {SelectField} from "../../components/forms/selectField/SelectField";
 
 
 
@@ -50,6 +56,8 @@ export const FilmAdd = ()=>{
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [message, setMessage] = useState("");
+    const [genres, setGenres] = useState([]);
+    const [selectionGenres, setSelectionGenres] = useState(selectedFilmsTypes);
     const submitHandler = (e)=>{
         e.preventDefault();
 
@@ -72,11 +80,26 @@ export const FilmAdd = ()=>{
     const handleChange = (e)=>{
         console.log(formErrors)
         const {name, value, files} = e.target
+        if (name === "genres"){
+            let mySelectedList = genres;
+            if(genres.length <3){
+
+               mySelectedList.push(value);
+               setGenres(mySelectedList);
+               let newSelection = selectionGenres.filter((genre)=>genre !== value)
+               setSelectionGenres(newSelection);
+            }
+        }
         if(files){
             setFilmValues({...filmValues,[name]:files[0]})
         }else{
             setFilmValues({...filmValues,[name]:value})
         }
+    }
+
+    const handleReset = ()=>{
+        setGenres([]);
+        setSelectionGenres(selectedFilmsTypes);
     }
 
     useEffect(()=>{
@@ -126,13 +149,15 @@ export const FilmAdd = ()=>{
                             formError={formErrors.description}
                         />
 
+                        <SelectField label="genres"
+                                     type="genres"
+                                     name="genres"
+                                     values={filmValues.genres}
+                                     handleChange={handleChange}
+                                     listeSelected={genres}
+                                     selection={selectionGenres}
+                                     handleReset={handleReset}
 
-                         <TextFieldLarge     label="genres"
-                                            type="text"
-                                            placeholder="entrer les genres du film séparé par un ;"
-                                            name="genres"
-                                            values={filmValues.genres}
-                                            handleChange={handleChange}
                         />
 
                         <TextFieldLarge     label="acteurs"
