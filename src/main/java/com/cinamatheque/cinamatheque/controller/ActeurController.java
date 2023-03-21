@@ -21,7 +21,7 @@ public class ActeurController {
     // add image actor
 
     //    get actor by id
-    @GetMapping("/search/{id}")
+    @GetMapping("/{id}")
     public Acteur findActeurById(@PathVariable String id){
         return repository.findById(id).get();
     }
@@ -38,7 +38,7 @@ public class ActeurController {
 
     //    get actor inside data bas
     @GetMapping
-    public List<Acteur> getActeur() {
+    public List<Acteur> getActeurs() {
         return repository.findAll();
     }
 
@@ -67,5 +67,4 @@ public class ActeurController {
         repository.deleteById(id);
         return "deleting successfully";
     }
-
 }
