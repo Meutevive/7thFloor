@@ -14,6 +14,7 @@ import { TextFieldLarge } from "../../components/forms/TextField/TextFieldLarge"
 import { Button } from "../../components/buttons/Button";
 import { TextArea } from "../../components/forms/textarea/TextArea";
 import {SelectField} from "../../components/forms/selectField/SelectField";
+import {useSelector} from "react-redux";
 
 
 
@@ -51,13 +52,18 @@ export const AdminFilms =()=>{
 }
 
 export const FilmAdd = ()=>{
-    const navigate = useNavigate()
+    const {allActors} = useSelector((state)=>state.actors);
+    const navigate = useNavigate();
+
     const [filmValues, setFilmValues] = useState(filmInitialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [message, setMessage] = useState("");
     const [genres, setGenres] = useState([]);
     const [selectionGenres, setSelectionGenres] = useState(selectedFilmsTypes);
+    const [actors, setActors] = useState([]);
+    const [selectionActors, setSelectionActors] = useState(allActors);
+
     const submitHandler = (e)=>{
         e.preventDefault();
 
@@ -90,6 +96,16 @@ export const FilmAdd = ()=>{
                setSelectionGenres(newSelection);
             }
         }
+
+        if(name === "actors"){
+            let mySelectedList = actors;
+            mySelectedList.push(value);
+            setActors(mySelectedList);
+            console.log(actors);
+            let newSelection = selectionActors.filter((actor)=>actor.fullname !== value);
+            setSelectionActors(newSelection);
+        }
+
         if(files){
             setFilmValues({...filmValues,[name]:files[0]})
         }else{
@@ -97,9 +113,16 @@ export const FilmAdd = ()=>{
         }
     }
 
-    const handleReset = ()=>{
-        setGenres([]);
-        setSelectionGenres(selectedFilmsTypes);
+    const handleReset = (name)=>{
+        if(name === "genres"){
+
+            setGenres([]);
+            setSelectionGenres(selectedFilmsTypes);
+        }
+        if(name === "actors"){
+            setActors([]);
+            setSelectionActors(allActors);
+        }
     }
 
     useEffect(()=>{
@@ -160,12 +183,14 @@ export const FilmAdd = ()=>{
 
                         />
 
-                        <TextFieldLarge     label="acteurs"
-                                            type="text"
-                                            placeholder="entrer les acteurs du film séparé par un ;"
-                                            name="actors"
-                                            values={filmValues.actors}
-                                            handleChange={handleChange}
+                        <SelectField    label="acteurs"
+                                        type="acteurs"
+                                        name="actors"
+                                        listeSelected={actors}
+                                        selection={selectionActors}
+                                        values={filmValues.actors}
+                                        handleChange={handleChange}
+                                        handleReset={handleReset}
                         />
 
                         <TextFieldLarge     label="directors"
