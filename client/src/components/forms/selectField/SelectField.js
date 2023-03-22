@@ -13,24 +13,14 @@ export const SelectField = ({label,type, values, name, handleChange, listeSelect
 
               <div className="mb-2">
              {
-
                  listeSelected.map((data)=>{
-                     console.log(data)
-                     if(name === "actors"){
-                         return (
-                             <span
-                                 className="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
-                                 {data}
-                             </span>
-                         );
-                     }else{
-                         return (
-                             <span
-                                 className="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
-                                 {data}
-                             </span>
-                         );
-                     }
+
+                     return (
+                         <span
+                             className="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+                             {data}
+                         </span>
+                     );
                  })
              }
 
@@ -48,11 +38,12 @@ export const SelectField = ({label,type, values, name, handleChange, listeSelect
                 {
 
                     selection.map((data)=>{
-                        if(name === "actors"){
+                        if(name === "actors" || name === "directors"){
                             const {fullname} = data;
                              return(
                                  <option value={fullname}>{fullname}</option>
                              );
+
                         }else{
 
                             return(

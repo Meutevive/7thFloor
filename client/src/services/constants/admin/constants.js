@@ -17,8 +17,8 @@ export const filmInitialValues = {
     genres : "",
     file : "",
     pubDate : "",
-    actors : "",
-    directors : ""
+    actors : [],
+    directors : []
 }
 
 export const selectedFilmsTypes = ["action", "aventure", "romance", "horreur", "combat"];

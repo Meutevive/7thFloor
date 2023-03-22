@@ -53,6 +53,7 @@ export const AdminFilms =()=>{
 
 export const FilmAdd = ()=>{
     const {allActors} = useSelector((state)=>state.actors);
+    const {allDirectors} = useSelector((state)=>state.directors);
     const navigate = useNavigate();
 
     const [filmValues, setFilmValues] = useState(filmInitialValues);
@@ -64,11 +65,14 @@ export const FilmAdd = ()=>{
     const [actors, setActors] = useState([]);
     const [selectionActors, setSelectionActors] = useState(allActors);
 
+    const [directors, setDirectors] = useState([]);
+    const [selectionDirectors, setSelectionDirectors] = useState(allDirectors);
+
     const submitHandler = (e)=>{
         e.preventDefault();
 
         if(Object.keys(formErrors).length === 0){
-
+            console.log(filmValues);
             addfilm(filmValues).then(response=>response.json()).then((response)=>{
                 if(response){
                     navigate('/admin/films')
@@ -84,12 +88,12 @@ export const FilmAdd = ()=>{
     }
 
     const handleChange = (e)=>{
-        console.log(formErrors)
+
         const {name, value, files} = e.target
         if (name === "genres"){
+
             let mySelectedList = genres;
             if(genres.length <3){
-
                mySelectedList.push(value);
                setGenres(mySelectedList);
                let newSelection = selectionGenres.filter((genre)=>genre !== value)
@@ -98,18 +102,35 @@ export const FilmAdd = ()=>{
         }
 
         if(name === "actors"){
+
             let mySelectedList = actors;
             mySelectedList.push(value);
             setActors(mySelectedList);
-            console.log(actors);
             let newSelection = selectionActors.filter((actor)=>actor.fullname !== value);
             setSelectionActors(newSelection);
+        }
+        if(name === "directors"){
+
+            let mySelectedList = directors;
+            mySelectedList.push(value);
+            setDirectors(mySelectedList);
+            let newSelection = selectionActors.filter((director)=>director.fullname !== value);
+            setSelectionDirectors(newSelection);
         }
 
         if(files){
             setFilmValues({...filmValues,[name]:files[0]})
         }else{
-            setFilmValues({...filmValues,[name]:value})
+            if(name === "genres"){
+                setFilmValues({...filmValues,[name]:genres})
+            }
+            else if(name === "actors") {
+                setFilmValues({...filmValues, [name]: actors})
+            }else if(name === "directors"){
+             setFilmValues({...filmValues,[name]:directors})
+            }else{
+                setFilmValues({...filmValues,[name]:value})
+            }
         }
     }
 
@@ -193,12 +214,14 @@ export const FilmAdd = ()=>{
                                         handleReset={handleReset}
                         />
 
-                        <TextFieldLarge     label="directors"
-                                            type="text"
-                                            placeholder="entrer les réalisateurs du film séparé par un ;"
-                                            name="directors"
-                                            values={filmValues.directors}
-                                            handleChange={handleChange}
+                        <SelectField    label="réalisateurs"
+                                        type="directors"
+                                        name="directors"
+                                        listeSelected={directors}
+                                        selection={selectionDirectors}
+                                        values={filmValues.directors}
+                                        handleChange={handleChange}
+                                        handleReset={handleReset}
                         />
 
                         <TextFieldLarge

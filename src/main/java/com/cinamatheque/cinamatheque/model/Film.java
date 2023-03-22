@@ -17,7 +17,7 @@ public class Film {
     private String title;
     private String description;
     private String poster;
-    private Date pubDate;
+    private String pubDate;
     private ArrayList<String> genres;
     private ArrayList<String> actors;
     private ArrayList<String> directors;
