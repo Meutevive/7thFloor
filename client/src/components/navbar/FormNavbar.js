@@ -12,16 +12,14 @@ export const FormNavbar = () => {
     const handleClick = ()=>{
         dispatch(logout())
     }
-
     return(
-
         <section className="flex flex-auto items-center justify-evenly h-full pr-2 pl-5 sticky top-0 border border-black bg-black ">
 
-            <Link to="/Accueil">
+            <Link to="/">
                 <img className="bg-center h-18 w-24 mr-5" src={logo} alt="Logo"/>
             </Link>
-            <Link to="/film" className="mt-0 text-sm">tops shows </Link>
-            <Link to="/" className="mt-0 text-sm">tops stars</Link>
+            <Link to="/films" className="mt-0 text-sm">tops shows </Link>
+            <Link to="/actors" className="mt-0 text-sm">tops stars</Link>
             <Link to="/" className="mt-0 text-sm ">Ma liste</Link>
 
             <div className="text-gray-400 flex-row justify-between items-center pt-1">

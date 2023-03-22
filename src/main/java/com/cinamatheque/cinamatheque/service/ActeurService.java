@@ -25,7 +25,7 @@ public class ActeurService {
         if(fileName.contains("..")){
             System.out.println("not a valid file");
         }
-        actor.setPosterActor(Arrays.toString(Base64.getEncoder().encode(file.getBytes())));
+        actor.setPosterActor(Base64.getEncoder().encodeToString(file.getBytes()));
         actor.setFullname(fullname);
         actor.setBirthdate(birthdate);
         actor.setDescription(description);
