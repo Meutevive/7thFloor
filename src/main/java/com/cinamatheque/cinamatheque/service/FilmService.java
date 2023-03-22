@@ -29,7 +29,7 @@ public class FilmService {
         return films.getContent();
     }
 
-    public Film saveFilm (MultipartFile file, String title, String description, Date pubDate, ArrayList<String> genres, ArrayList<String> actors, ArrayList<String> directors) throws IOException {
+    public Film saveFilm (MultipartFile file, String title, String description, String pubDate, ArrayList<String> genres, ArrayList<String> actors, ArrayList<String> directors) throws IOException {
 
         Film film = new Film();
         film.setPoster(Arrays.toString(Base64.getEncoder().encode(file.getBytes())));
