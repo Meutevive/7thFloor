@@ -25,7 +25,7 @@ public class FilmController {
     public Film createFilm(@RequestParam("file") MultipartFile file,
                            @RequestParam("title") String title,
                            @RequestParam("description") String description,
-                           @RequestParam("pubDate") Date pubDate,
+                           @RequestParam("pubDate") String pubDate,
                            @RequestParam("genres") ArrayList<String> genres,
                            @RequestParam("actors") ArrayList<String> actors,
                            @RequestParam("directors") ArrayList<String> directors

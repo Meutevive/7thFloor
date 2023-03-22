@@ -17,10 +17,19 @@ public class Film {
     private String title;
     private String description;
     private String poster;
-    private Date pubDate;
+    private String pubDate;
     private ArrayList<String> genres;
     private ArrayList<String> actors;
     private ArrayList<String> directors;
-    private Float note;
+    private String comments;
 
+    public Film(String title, String description, String poster, String pubDate, ArrayList<String> genres, ArrayList<String> actors, ArrayList<String> directors) {
+        this.title = title;
+        this.description = description;
+        this.poster = poster;
+        this.pubDate = pubDate;
+        this.genres = genres;
+        this.actors = actors;
+        this.directors = directors;
+    }
 }
