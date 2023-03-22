@@ -1,13 +1,57 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 import {Contenu, Khphotos, recompense} from "./test/Data";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons/faPaperPlane";
 import {Commentaires} from "../Film/test/Data";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAllActors} from "../../reducers/actorsReducer";
 
 
+export const Actors = ()=>{
+    const {allActors} = useSelector((state)=>state.actors);
+    const dispatch = useDispatch();
 
-export const BioActor = () => {
+    useEffect(()=>{
+        dispatch(fetchAllActors())
+    },[])
+    return (
+      <div>
+            <FormNavbar/>
+            <section className="py-6 px-20 w-full max-w-screen-desktop">
+               {
+                   allActors.map((actor)=>{
+                        const {fullname, description, id, posterActor} = actor;
+                        console.log(posterActor)
+                        const bytes = window.atob(posterActor);
+                        const blob = new Blob([bytes], { type: 'image/jpeg' });
+                        const imageUrl = URL.createObjectURL(blob);
+                        const imgBlock = document.createElement('img')
+                        imgBlock.src = imageUrl;
+                        document.getElementById('image-elt').appendChild(imgBlock);
+
+                       return (
+                           <div key={id}>
+                              <h1 className="mb-3 text-xl font-white">{fullname}</h1>
+                               <div className="flex flex-row">
+                                   <div id="image-elt">
+
+                                   </div>
+                                   <div>
+                                       <p>{description.slice(0, 300)}</p>
+                                   </div>
+                               </div>
+                           </div>
+                       );
+                   })
+
+               }
+           </section>
+
+       </div>
+    );
+}
+export const Actor = () => {
 
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState(Commentaires);
@@ -91,7 +135,6 @@ export const BioActor = () => {
 
 
                 </div>
-
 
             </section>
 
