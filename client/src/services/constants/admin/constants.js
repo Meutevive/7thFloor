@@ -1,7 +1,7 @@
 export const actorInitialValues = {
     fullname: "",
     description: "",
-    birthdate: "",
+    birthdate: "10-10-2010",
 }
 
 export const directorInitialValues = {
