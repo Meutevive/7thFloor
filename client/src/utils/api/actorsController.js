@@ -49,5 +49,5 @@ export const getActor = async (id)=>{
     const requestOptions = {
         method: 'GET',
     }
-    return await fetch(api+'/acteur/search/'+id, requestOptions);
+    return await fetch(api+'/acteur/'+id, requestOptions);
 }
