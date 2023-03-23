@@ -20,10 +20,10 @@ function Register(){
     const [agreeTerms, setAgreeTerms] = useState(false);
     const [formError, setFormError] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    const [message, setMessage] = useState("");
     const [showError, setShowError] = useState(false);
     const {isLogged} = useSelector((state)=>state.user)
     const dispatch = useDispatch();
+    const [message, setMessage] = useState("Le formulaire que vous venez de soumettre contient des erreurs");
 
     const handleChange = (e)=>{
         const {name, value} = e.target
@@ -51,6 +51,20 @@ function Register(){
                     navigate("/home");
                     dispatch(loginUser(userValues.username))
                     console.log(isLogged)
+                }
+                else if (response.status === 409){
+                    response.json().then((response)=>{
+                        //je récupére la nature du message
+                        console.log(response.message.search('username'))
+                        if(response.message.search('username') > 0){
+                            setMessage("Cet identifiant existe déja !")
+                        }else{
+                            setMessage("Cet adresse email existe déja !")
+                        }
+
+
+                    })
+                    setIsSubmit(true);
                 }
                 else if (response.status === 409){
                     response.json().then((response)=>{
@@ -167,7 +181,6 @@ function Register(){
                         />
                         <CheckBoxField
                                         checked={agreeTerms}
-                                        showError={showError}
                                         formError={formError.agree_terms}
                                         handleChecked={handleChecked}
 
