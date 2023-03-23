@@ -6,8 +6,9 @@ import {faPaperPlane} from "@fortawesome/free-solid-svg-icons/faPaperPlane";
 import {Commentaires} from "../Film/test/Data";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllActors} from "../../reducers/actorsReducer";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {getActor} from "../../utils/api/actorsController";
+import {actorInitialValues} from "../../services/constants/admin/constants";
 
 
 export const Actors = ()=>{
@@ -56,31 +57,37 @@ export const Actor = () => {
 
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState(Commentaires);
-    const [actorValues, setActorValues] = useState();
+    const [actorValues, setActorValues] = useState(actorInitialValues);
+    const [posterActor, setPosterActor]=useState()
     const {id} = useParams();
 
     useEffect(()=>{
        getActor(id).then(res=>res.json()).then((actor)=>{
            setActorValues(actor);
-           console.log(actor);
+           setPosterActor(actor.posterActor);
        })
     },[])
 
-    const birthdate = new Date(actorValues.birthdate);
+
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const {isLogged} = useSelector((state)=>state.user);
+    const navigate = useNavigate();
     const submitHandler = (e)=>{
         e.preventDefault();
+        if(isLogged){
 
-        Commentaires.push(
-            {
-                name:"this test user",
-                image:"/assets/images/avatar1.png",
-                commentaire: comment
-            }
-        );
-        setComment("");
-        console.log(Commentaires);
-        setComments(Commentaires);
+            Commentaires.push(
+                {
+                    name:"this test user",
+                    image:"/assets/images/avatar1.png",
+                    commentaire: comment
+                }
+            );
+            setComment("");
+            setComments(Commentaires);
+        }else{
+            navigate('/login');
+        }
     }
 
     return(
@@ -91,9 +98,14 @@ export const Actor = () => {
                     <h1 className="mb-3 text-2xl font-black">{actorValues.fullname}</h1>
                     <div className="flex space-x-9">
                         <div className="flex flex-col items-center space-y-4">
-                            <div className="w-40">
-                                <img className="object-fill w-48 h-52 rounded-lg" src="/assets/images/KitHarington.jpeg" alt="KH"/>
-                            </div>
+                            {
+                                posterActor &&
+                                <div className="w-40">
+                                    <img className="object-fill w-48 h-52 rounded-lg"
+                                         src={`data:image/jpeg;base64,${posterActor}`}
+                                         alt="KH"/>
+                                </div>
+                            }
 
                         </div>
 
@@ -111,95 +123,91 @@ export const Actor = () => {
                                     <div className="space-y-4">
                                       {/*  <p></p>
                                         <p></p>*/}
-                                        <p>{birthdate.toLocaleDateString(undefined ,options)}</p>
-                                        <p>{new Date().getFullYear() - birthdate.getFullYear()}</p>
+                                        <p>{new Date(actorValues.birthdate).toLocaleDateString(undefined, options)}</p>
+                                        <p> {new Date().getFullYear() - new Date(actorValues.birthdate).getFullYear()} ans</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-            {/*    biographie section*/}
-                <section className="py-6 px-20 w-10/12 max-w-screen-desktop">
-                    <h1 className="mb-3 text-2xl font-black text-red-600 font-bold">Biographie</h1>
-                    <div>
-                        <p>{Contenu.Biographie}</p>
-
-                    </div>
-
-                </section>
-
-            {/*    photo section*/}
-                <section className="py-6 px-20 w-10/12 max-w-screen-desktop">
-                    <h1 className="mb-3 text-2xl font-black text-red-600 font-bold">Photos</h1>
-                    {/*map les pic dans un tableau*/}
-                    {/*Bug to notice. cannot show all pic mapped. only the first one is shown*/}
-                    <div className="flex flex-wrap -mr-12">
-                        {Khphotos.map(({photo})=>{
-                            return(
-                                <div className="mb-4 ml-10">
-                                    <img className="object-fill w-32 h-36 rounded-md" src={photo} alt="KH photos"/>
-                                </div>
-
-                            );
-                        })}
-
-
-                    </div>
-
-                </section>
-
-                {/*Recompence section*/}
-                <section className="py-6 px-20 w-10/12 max-w-screen-desktop">
-                    <h1 className="mb-3 text-2xl font-black text-red-600 font-bold">Récompenses</h1>
-                    <div className="flex flex-col space-y-2 items-centers">
-
+                {
+                    actorValues.description &&
+                    <section className="py-6 px-20 w-10/12 max-w-screen-desktop">
+                        <h1 className="mb-3 text-2xl font-black text-red-600 font-bold">Biographie</h1>
                         <div>
-                            {/*left infos*/}
-                            <div className="flex space-x-12 items-center">
-                                <div className=" space-y-8">
-                                    <p>{recompense.infosLeft1}</p>
-                                    <p>{recompense.infosLeft2}</p>
-                                    <p>{recompense.infosLeft3}</p>
+                            <p>{actorValues.description}</p>
+
+                        </div>
+
+                    </section>
+                }
+                {
+                    actorValues.photos &&
+                    <section className="py-6 px-20 w-10/12 max-w-screen-desktop">
+                        <h1 className="mb-3 text-2xl font-black text-red-600 font-bold">Photos</h1>
+                        <div className="flex flex-wrap -mr-12">
+
+
+
+                        </div>
+
+                    </section>
+                }
+
+                {
+                    actorValues.recompenses &&
+                    <section className="py-6 px-20 w-10/12 max-w-screen-desktop">
+                        <h1 className="mb-3 text-2xl font-black text-red-600 font-bold">Récompenses</h1>
+                        <div className="flex flex-col space-y-2 items-centers">
+
+                            <div>
+                                {/*left infos*/}
+                                <div className="flex space-x-12 items-center">
+                                    <div className=" space-y-8">
+                                        <p></p>
+                                        <p></p>
+                                        <p></p>
+
+                                    </div>
+                                    {/*right infos*/}
+                                    <div className="space-y-8">
+                                        <p></p>
+                                        <p></p>
+                                        <p></p>
+                                    </div>
 
                                 </div>
-                                {/*right infos*/}
-                                <div className="space-y-8">
-                                    <p>{recompense.infosRight1}</p>
-                                    <p>{recompense.infosRight2}</p>
-                                    <p>{recompense.infosRight3}</p>
-                                </div>
-
                             </div>
                         </div>
-                    </div>
 
 
 
-                </section>
+                    </section>
+                }
 
                 {/*Commentaires sections*/}
                 <section className="py-6 px-20 w-10/12 max-w-screen-desktop">
                     <h1 className="mb-3 text-2xl font-black text-red-600 font-bold">Commentaires</h1>
-                    {
-                        comments.map(({name,image,commentaire})=>{
-                            return (
-                                <div className="flex mb-4 space-x-2">
-                                    <div>
-                                        <img className="object-fill w-10 h-10 rounded-full" src={image} alt="user"/>
-                                    </div>
+                        {
+                            actorValues.comments &&
+                                actorValues.comments.map(({name,image,commentaire})=>{
+                                    return (
+                                        <div className="flex mb-4 space-x-2">
+                                            <div>
+                                                <img className="object-fill w-10 h-10 rounded-full" src={image} alt="user"/>
+                                            </div>
 
-                                    <div className="flex flex-col">
-                                        <p>{name}</p>
-                                        <p>{commentaire}</p>
+                                            <div className="flex flex-col">
+                                                <p>{name}</p>
+                                                <p>{commentaire}</p>
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                        }
 
-                                    </div>
-                                </div>
-                            );
-                        })
-                    }
-
-                    <form className="flex mx-10" onSubmit={submitHandler}>
+                    <form className="flex " onSubmit={submitHandler}>
                             <textarea className="appearance-none bg-transparent border-b-2 border-white w-full max-w-2xl text-slate-100 mr-2 py-1 px-2 focus:outline-none"
                                       placeholder="écrire un commentaire"
                                       rows="2"
