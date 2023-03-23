@@ -11,7 +11,7 @@ const importAll = (r) => r.keys().map(r);
 const images = importAll(require.context("../../assets/imagesGrid", false, /\.(png|jpe?g|webp)$/));
 
 //gives a delay time
-const delay = 3000;
+const delay = 7000;
 
 export const FormGridFilm = () => {
     //use transform: translate 3D and keep tracking of the currently displayed index
@@ -68,9 +68,10 @@ export const FormGridFilm = () => {
                 </div>
             </div>
 
+
             {/*buttons (dots) that displays the currents image slided*/}
             {/*slideshowDot remove to hide the dots*/}
-            <div className="text-center">
+            <div className="text-center relative">
                 {Array(Math.ceil(images.length / 7))
                     .fill()
                     .map((_, idx) => {
@@ -90,14 +91,15 @@ export const FormGridFilm = () => {
                         );
                     })}
                 {/*left arrow*/}
-                <div className="absolute inset-y-0 left-0 flex items-center justify-center w-10">
-                    <button className="text-2xl font-bold text-white hover:text-gray-300" onClick={() => onArrowClick("prev")}>
+                <div className="left-arrow" style={{ position: "absolute", left: 0, top: "50%",bottom : "50% d" , transform: "translateY(-50%)" }}>
+                    <button className="arrow text-2xl font-bold text-white hover:text-gray-300 mb-64" onClick={() => onArrowClick("prev")}>
                         &lt;
                     </button>
                 </div>
-                {/*right arrow*/}
-                <div className="absolute inset-y-0 right-0 flex items-center justify-center w-10">
-                    <button className="text-2xl font-bold text-white hover:text-gray-300" onClick={() => onArrowClick("next")}>
+
+                {/*right arrow and set it to the middle*/}
+                <div className="right-arrow" style={{ position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)" }}>
+                    <button className="arrow text-2xl font-bold text-white hover:text-gray-300 mb-64" onClick={() => onArrowClick("next")}>
                         &gt;
                     </button>
                 </div>
@@ -105,4 +107,5 @@ export const FormGridFilm = () => {
 
         </div>
     );
+
 };
