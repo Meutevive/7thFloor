@@ -3,6 +3,7 @@ package com.cinamatheque.cinamatheque.controller;
 import com.cinamatheque.cinamatheque.model.Film;
 import com.cinamatheque.cinamatheque.repository.FilmRepository;
 import com.cinamatheque.cinamatheque.service.FilmService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,31 +16,37 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/films")
+@AllArgsConstructor
 public class FilmController {
     public FilmService filmService;
     public FilmRepository filmRepository;
 
     //safe film inside database with file safe
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Film createFilm(@RequestParam("file") MultipartFile file,
-                           @RequestParam("title") String title,
-                           @RequestParam("description") String description,
-                           @RequestParam("pubDate") String pubDate,
-                           @RequestParam("genres") ArrayList<String> genres,
-                           @RequestParam("actors") ArrayList<String> actors,
-                           @RequestParam("directors") ArrayList<String> directors
-    ) throws IOException {
-        return filmService.saveFilm(file, title, description, pubDate, genres, actors, directors) ;
-    }
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Film createFilm(@RequestParam("file") MultipartFile file,
+//                           @RequestParam("title") String title,
+//                           @RequestParam("description") String description,
+//                           @RequestParam("pubDate") String pubDate,
+//                           @RequestParam("genres") ArrayList<String> genres,
+//                           @RequestParam("actors") ArrayList<String> actors,
+//                           @RequestParam("directors") ArrayList<String> directors
+//    ) throws IOException {
+//        return filmService.saveFilm(file, title, description, pubDate, genres, actors, directors) ;
+//    }
 
     // get film with pagination
-    @GetMapping
-    public List<Film> getAllFilm(@RequestParam(defaultValue = "0") int page,
-                                 @RequestParam(defaultValue = "5") int size,
-                                 @RequestParam(defaultValue = "title") String sortby) {
+//    @GetMapping
+//    public List<Film> getAllFilm(@RequestParam(defaultValue = "0") int page,
+//                                 @RequestParam(defaultValue = "5") int size,
+//                                 @RequestParam(defaultValue = "title") String sortby) {
+//
+//        return filmService.getFilmsBypagination(page, size, sortby, "ASC");
+//    }
 
-        return filmService.getFilmsBypagination(page, size, sortby, "ASC");
+    @GetMapping
+    public List<Film> getAllFilm(){
+        return filmRepository.findAll();
     }
 
     // get film by id

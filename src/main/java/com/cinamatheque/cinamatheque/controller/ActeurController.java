@@ -19,8 +19,7 @@ public class ActeurController {
 
     // Create actor to populate actor
     // add image actor
-
-    //    get actor by id
+    // get actor by id
     @GetMapping("/{id}")
     public Acteur findActeurById(@PathVariable String id){
         return repository.findById(id).get();
