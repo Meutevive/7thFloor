@@ -21,3 +21,18 @@ export const addfilm = async(filmValues)=>{
         }
         return await fetch(api+'/films', requestOptions);
 }
+
+export const deleteFilm = async (id)=>{
+    const requestOptions = {
+        method: 'DELETE',
+    }
+    return await fetch(api+'/films/'+id, requestOptions);
+}
+
+export const getFilm = async (id)=>{
+    const requestOptions = {
+        method: 'GET',
+    }
+    return await fetch(api+'/films/'+id, requestOptions);
+}
+

@@ -6,28 +6,38 @@ import { useEffect, useState } from "react";
 import {
     filmInitialValues,
     selectedFilmsTypes,
-    selectedListGenres,
     validateFilm
 } from "../../services/constants/admin/constants";
-import { addfilm } from "../../utils/api/filmsController";
+import {addfilm, deleteFilm} from "../../utils/api/filmsController";
 import { TextFieldLarge } from "../../components/forms/TextField/TextFieldLarge";
 import { Button } from "../../components/buttons/Button";
 import { TextArea } from "../../components/forms/textarea/TextArea";
 import {SelectField} from "../../components/forms/selectField/SelectField";
 import {useSelector} from "react-redux";
+import {Confirm} from "../../components/modals/confirm";
+
 
 
 
 export const AdminFilms =()=>{
     const [search,setSearch] = useState();
-
+    const [selectedId, setSelectedId] = useState();
+    const [modal, setModal] = useState(false);
     const handleSearch = (e)=>{
         e.preventDefault();
         console.log(search);
     }
 
     const handleDelete = ()=>{
-        console.log("deleted");
+        deleteFilm(selectedId).then((response)=>{
+           setModal(!modal);
+           window.location.reload();
+       })
+    }
+
+    const handleModal = (id)=>{
+        setModal(!modal);
+        setSelectedId(id);
     }
 
     const handleUpdate = ()=>{
@@ -36,6 +46,7 @@ export const AdminFilms =()=>{
 
     return (
         <div className="flex space-x-3 items-start py-12">
+            {modal &&  <Confirm type="suppression" context="acteur" handleModal={handleModal} handleDelete={handleDelete}/>}
             <AdminSidebar/>
             <section className="py-6 px-20 w-full space-y-3 flex flex-col max-w-screen-desktop">
                 <Search placeholder = "chercher par le nom, le prenom de l'acteur"
@@ -45,7 +56,7 @@ export const AdminFilms =()=>{
                 />
 
                 <Link to="/admin/films/add" className="text-white bg-red-600 p-3 rounded-xl self-start">+ Ajouter un nouveau film</Link>
-                <FilmsTable handleDelete={handleDelete} handleUpdate={handleUpdate}/>
+                <FilmsTable handleModal={handleModal} handleUpdate={handleUpdate}/>
             </section>
         </div>
     );
