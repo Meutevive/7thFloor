@@ -37,17 +37,12 @@ public class FilmController {
     }
 
 //     get film with pagination
-//    @GetMapping
-//    public List<Film> getAllFilm(@RequestParam(defaultValue = "0") int page,
-//                                 @RequestParam(defaultValue = "5") int size,
-//                                 @RequestParam(defaultValue = "title") String sortby) {
-//
-//        return filmService.getFilmsBypagination(page, size, sortby, "ASC");
-//    }
-
     @GetMapping
-    public List<Film> getAllFilm(){
-        return filmRepository.findAll();
+    public List<Film> getAllFilm(@RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "5") int size,
+                                 @RequestParam(defaultValue = "title") String sortby)
+    {
+        return filmService.getFilmsBypagination(page, size, sortby, "ASC");
     }
 
     // get film by id
@@ -55,16 +50,21 @@ public class FilmController {
     public Film getFilmById(@PathVariable String id){
         return filmRepository.findById(id).get();
     }
+
+
     // get film by date se sorti
     @GetMapping("/search/{pubDate}")
     public Film getFilmWithDate(@PathVariable Date pubDate){
         return filmRepository.findByPubDate(pubDate) ;
     }
+
+
     // get film by title
     @GetMapping("/search/{title}")
     public List<Film> getFilmsByTitle(@PathVariable String title){
         return filmRepository.findByTitle(title);
     }
+
 
     //modification des film
     @PutMapping
@@ -81,6 +81,7 @@ public class FilmController {
         existingFilm.setDirectors(filmRequest.getDirectors());
         return filmRepository.save(existingFilm);
     }
+
 
     // deleting film
     @DeleteMapping("/{id}")

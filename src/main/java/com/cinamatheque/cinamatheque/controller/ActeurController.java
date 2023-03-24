@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,11 +28,12 @@ public class ActeurController {
    @PostMapping
    public Acteur CreateActeur (@RequestParam("file") MultipartFile file,
                               @RequestParam("fullname") String fullname,
-                              @RequestParam("birthdate") String birthdate,
+                              @RequestParam("birthdate") Date birthdate,
+                              @RequestParam("country") String country,
                               @RequestParam("description") String description
 
    ) throws IOException {
-       return acteurService.safeActeur(file, fullname, birthdate, description);
+       return acteurService.saveActeur(file, fullname, birthdate, country, description);
    }
 
 
