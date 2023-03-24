@@ -15,6 +15,7 @@ import ResponsiveLayout from "../../components/responsive/ResponsiveLayout";
 import NewsActor from "./NewsActor";
 import NewsActor2 from "./NewsActor2";
 import FilmNews from "./FilmNews";
+import Footer from "../../components/footer/Footer";
 
 
 /**
@@ -33,6 +34,7 @@ export const Accueil = (props) => {
         // <ResponsiveLayout>
 
             //LandingPage page container
+        <div>
             <div className=" flex flex-col items-stretch justify-around font-small
                              leading-3 text-white w-full bg-black h-full  space-y-5">
                 {/*Navbar*/}
@@ -78,6 +80,9 @@ export const Accueil = (props) => {
                 </div>
 
             </div>
+        {/* Footer   */}
+            <Footer/>
+        </div>
         // </ResponsiveLayout>
     );
 }

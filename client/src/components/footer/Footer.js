@@ -17,21 +17,21 @@ export const Footer = () => {
 
     return (
 
-        <footer className="d-flex align-items-end">
+        <section className="d-flex align-items-end bg-black w-5/12">
             <div className="flex justify-between">
                 <img src={footerImage} alt="Footer" className="w-1/6"/>
                 {/* navbar*/}
                 <nav className="ml-auto">
-                    <Link to="/accueil">Accueil &nbsp; &nbsp;</Link>
+                    {/*<Link to="/accueil">Accueil &nbsp; &nbsp;</Link>*/}
                     <Link to="#" href="#">A propos &nbsp; &nbsp;</Link>
-                    <Link to="#">Mon Compte &nbsp; &nbsp;</Link>
+                    {/*<Link to="#">Mon Compte &nbsp; &nbsp;</Link>*/}
                 </nav>
             </div>
             {/* used imported icon*/}
             <div className="ml-auto" style={{fontSize: '80%'}}>
                 <FontAwesomeIcon icon={faCopyright}/> Copyright {year}
             </div>
-        </footer>
+        </section>
 
 
     );
