@@ -4,7 +4,6 @@ package com.cinamatheque.cinamatheque.controller;
 import com.cinamatheque.cinamatheque.model.Comment;
 import com.cinamatheque.cinamatheque.repository.CommentRepository;
 import com.cinamatheque.cinamatheque.service.CommentService;
-import com.mongodb.lang.Nullable;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,15 +14,14 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping("api/v1/comment")
 public class CommentController {
-    private final CommentRepository commentRepository;
     private final CommentService commentService;
     @GetMapping
     public List<Comment> getAllComments(){
         return commentService.getAllComments();
     }
 
-    @GetMapping
-    public Optional<Comment> getComment(@RequestParam("id") String id){
+    @GetMapping("/{id}")
+    public Optional<Comment> getComment(@PathVariable("id") String id){
         return commentService.getCommentByid(id);
     }
 

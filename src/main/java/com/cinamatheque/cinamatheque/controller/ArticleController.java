@@ -23,7 +23,7 @@ public class ArticleController {
         return articleRepository.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public Optional<Article> getArticle(@RequestParam("id") String id){
         return articleRepository.findById(id);
     }
