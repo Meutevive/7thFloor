@@ -44,7 +44,7 @@ public class ActeurController {
     }
 
     //    get actor by firstname
-    @GetMapping("/search")
+    @GetMapping("/search/{fullname}")
     public List<Acteur> findActeurByFullname(@RequestParam String fullname){
        System.out.print(fullname);
         return repository.findByFullnameLike(fullname);
