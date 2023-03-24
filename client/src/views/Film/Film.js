@@ -4,12 +4,12 @@ import {faPaperPlane} from "@fortawesome/free-solid-svg-icons/faPaperPlane";
 import {Actors, Commentaires, Contenu, Reviews} from "./test/Data";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 import React, {useEffect, useState} from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {json, Link, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {TextFieldMedium} from "../../components/forms/TextField/TextFieldMedium";
 import {fetchAllFilms} from "../../reducers/filmsReducer";
 import {filmInitialValues} from "../../services/constants/global";
-import {getActor} from "../../utils/api/actorsController";
+import {getActor, getActorByFullName} from "../../utils/api/actorsController";
 import {getFilm} from "../../utils/api/filmsController";
 import {options} from "../../services/constants/global";
 
@@ -86,16 +86,24 @@ export const  Film = ()=>{
     const [comments, setComments] = useState(Commentaires);
     const [filmValues, setFilmValues] = useState(filmInitialValues);
     const [posterFilm, setPosterFilm] = useState()
+    const [actors, setActors] = useState([]);
     const {id} = useParams();
 
 
      useEffect(()=>{
-       getFilm(id).then(res=>res.json()).then((actor)=>{
-           setFilmValues(actor);
-           setPosterFilm(actor.poster);
+       getFilm(id).then(res=>res.json()).then((film)=>{
+           setFilmValues(film);
+           setPosterFilm(film.poster);
+
+             let actor=[];
+             film.actors.map((fullname)=>{
+                 getActorByFullName(fullname).then(res=>res.json()).then(data=>{
+                    actor.push(data[0]);
+                    setActors(actor);
+                 })
+            })
        })
     },[])
-
 
     const {isLogged} = useSelector((state)=>state.user);
     const navigate = useNavigate();
@@ -171,29 +179,30 @@ export const  Film = ()=>{
                                 <h3 className="text-red-600 font-bold text-lg my-1.5">Description</h3>
                                 <div className="flex space-x-6">
                                     <div>
-                                        <p>{filmValues.country}</p>
-                                        <p>Réalisateur</p>
-                                        <p>Genre</p>
-                                        <p>Mots clés</p>
-
-                                    </div>
-                                    <div>
-                                        <p>{Contenu.pays.map((pays)=>{
-                                            return(`${pays}, `);
-                                        })}
-                                        </p>
-                                        <p>{Contenu.realisateur.map((realisateur)=>{
-                                            return(`${realisateur}, `);
-                                        })}
-                                        </p>
-                                        <p>{Contenu.genre.map((genre)=>{
-                                            return(`${genre}, `);
-                                        })}
-                                        </p>
-                                        <p>{Contenu.tag.map((tag)=>{
-                                            return(`${tag}, `);
-                                        })}
-                                        </p>
+                                        <div className="flex space-x-3">
+                                            <span>Pays:</span>
+                                            <span>{filmValues.country}</span>
+                                        </div>
+                                        <div className="flex space-x-3">
+                                            <span>Réalisateurs:</span>
+                                            <span>{
+                                                filmValues.directors.map(director=>{
+                                                    return (
+                                                        <span>{director}, </span>
+                                                    );
+                                                })
+                                            }</span>
+                                        </div>
+                                       <div className="flex space-x-3">
+                                            <span>Genres:</span>
+                                            <span>{
+                                                filmValues.genres.map(genre=>{
+                                                    return (
+                                                        <span>{genre}, </span>
+                                                    );
+                                                })
+                                            }</span>
+                                        </div>
 
                                     </div>
 
@@ -205,7 +214,20 @@ export const  Film = ()=>{
 
                 <section className="py-6 px-20 w-full max-w-screen-desktop">
                     <h1 className="mb-3 text-2xl text-red-600 font-bold">Acteurs et casting</h1>
+                    <div className="flex flex-wrap -mr-12">
+                    {
+                        actors.map(({id, fullname, posterActor})=>{
+                             return (
+                                 <div key={id} className="mb-7 ml-12">
+                                     <p>{fullname}</p>
+                                     <img className="object-fill w-40 h-52 rounded-md" src={`data:image/jpeg;base64,${posterActor}`} alt="actor"/>
+                                 </div>
+                             );
+                        })
 
+
+                   }
+                </div>
                 </section >
 
                 <section className="py-6 px-20 w-full max-w-screen-desktop">
@@ -214,7 +236,7 @@ export const  Film = ()=>{
                         <a className="underline" href="#Ecrire">Ecrire un review</a>
                     </div>
                     {
-                        Reviews.map(({name,image,review,note})=>{
+                        filmValues.reviews && filmValues.reviews.map(({name,image,review,note})=>{
                             return (
                                 <div className="flex space-x-16">
                                     <div className="flex flex-col space-y-4">
@@ -256,7 +278,7 @@ export const  Film = ()=>{
                 <section className="py-6 px-20 w-full max-w-screen-desktop">
                     <h1 className="mb-3 text-2xl text-red-600 font-bold">Commentaires</h1>
                     {
-                     comments.map(({name,image,commentaire})=>{
+                     filmValues.comments && filmValues.comments.map(({name,image,commentaire})=>{
                          return (
                              <div className="flex mb-4 space-x-2">
                                  <div>
