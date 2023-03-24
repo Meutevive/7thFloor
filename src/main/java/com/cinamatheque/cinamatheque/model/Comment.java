@@ -15,15 +15,17 @@ import java.util.Optional;
 @Document
 @AllArgsConstructor
 @NoArgsConstructor
+
+// References suspendues tant que je n'ai pas la solution : DE PALMES
 public class Comment {
     @Id private String id;
     private String content;
     private Date created_at;
     private String type;
-    @Nullable
-    @DocumentReference(collection = "Comment")
+//    @Nullable
+//    @DocumentReference(collection = "Comment")
     private String parent;
-    @DocumentReference(collection = "User")
+//    @DocumentReference(collection = "User")
     private String author;
 
 }

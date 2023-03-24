@@ -2,17 +2,15 @@ package com.cinamatheque.cinamatheque.controller;
 
 
 import com.cinamatheque.cinamatheque.model.Comment;
-import com.cinamatheque.cinamatheque.repository.CommentRepository;
 import com.cinamatheque.cinamatheque.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/comment")
+@RequestMapping("/api/v1/comment")
 public class CommentController {
     private final CommentService commentService;
     @GetMapping
@@ -36,5 +34,10 @@ public class CommentController {
     @PutMapping
     public Comment putComment(Comment comment){
         return commentService.put(comment);
+    }
+
+    @DeleteMapping("/{id}")
+    public void DeleteComment(@PathVariable("id") String id){
+        commentService.delete(id);
     }
 }
