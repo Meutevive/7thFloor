@@ -9,20 +9,34 @@ import {fetchAllActors} from "../../reducers/actorsReducer";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {getActor} from "../../utils/api/actorsController";
 import {actorInitialValues} from "../../services/constants/admin/constants";
+import {TextFieldMedium} from "../../components/forms/TextField/TextFieldMedium";
+import {FormSubmit} from "../../components/buttons/FormSubmit";
+import {Button} from "../../components/buttons/Button";
 
 
 export const Actors = ()=>{
     const {allActors} = useSelector((state)=>state.actors);
+    const [filterValues, setFilterValues] = useState({})
     const dispatch = useDispatch();
+
+    const handleFilterSubmit = (e)=>{
+        e.preventDefault();
+        console.log(filterValues);
+    }
+    const handleChange = (e)=>{
+        const {name, value} = e.target;
+        setFilterValues({...filterValues, [name]:value});
+    }
+
 
     useEffect(()=>{
         dispatch(fetchAllActors())
     },[])
+
     return (
       <div>
             <FormNavbar/>
           <div className="flex flex-row">
-
                 <div className="py-6 px-20 w-full max-w-screen-laptop flex flex-col space-y-5">
                    {
                        allActors.map((actor)=>{
@@ -45,8 +59,20 @@ export const Actors = ()=>{
                    }
                </div>
 
-             <section className="py-4 px-4 max-w-xl">
-                <h1>Filtre de recherche</h1>
+             <section className="py-4 px-4 max-w-xl self-start my-6">
+                <h1 className="mb-3 text-xl font-white">Filtre de recherche</h1>
+                 <form onSubmit={handleFilterSubmit}>
+                     <TextFieldMedium label="Nom de l'acteur"
+                                      placeholder="nom de l'acteur"
+                                      name="fullname"
+                                      values={filterValues.fullname}
+                                      handleChange={handleChange}/>
+                     <Button text="valider"
+                             size="small"
+                             color="red"
+                             type="submit"/>
+                 </form>
+
              </section>
           </div>
 
