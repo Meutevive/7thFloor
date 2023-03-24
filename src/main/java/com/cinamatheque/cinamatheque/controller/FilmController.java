@@ -32,6 +32,7 @@ public class FilmController {
                            @RequestParam("actors") ArrayList<String> actors,
                            @RequestParam("directors") ArrayList<String> directors
     ) throws IOException {
+        System.out.print(title);
         return filmService.saveFilm(file, title, description, pubDate, genres, actors, directors) ;
     }
 

@@ -15,12 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.*;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Service
 public class FilmService {
 
-    public FilmRepository filmRepository;
+    private final FilmRepository filmRepository;
+
     public List<Film> getFilmsBypagination(int pageNo, int pageSize, String sortBy, String sortDir) {
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
 
@@ -35,7 +35,7 @@ public class FilmService {
     public Film saveFilm (MultipartFile file, String title, String description, String pubDate, ArrayList<String> genres, ArrayList<String> actors, ArrayList<String> directors) throws IOException {
 
         Film film = new Film();
-        film.setPoster(Arrays.toString(Base64.getEncoder().encode(file.getBytes())));
+        film.setPoster(Base64.getEncoder().encodeToString(file.getBytes()));
         film.setTitle(title);
         film.setDescription(description);
         film.setPubDate(pubDate);
@@ -43,7 +43,7 @@ public class FilmService {
         film.setActors(actors);
         film.setDirectors(directors);
 
-        filmRepository.save(film);
-        return film;
+
+        return filmRepository.save(film);
     }
 }

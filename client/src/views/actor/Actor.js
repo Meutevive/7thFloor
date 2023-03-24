@@ -12,7 +12,7 @@ import {actorInitialValues} from "../../services/constants/admin/constants";
 import {TextFieldMedium} from "../../components/forms/TextField/TextFieldMedium";
 import {FormSubmit} from "../../components/buttons/FormSubmit";
 import {Button} from "../../components/buttons/Button";
-
+import {options} from "../../services/constants/global";
 
 export const Actors = ()=>{
     const {allActors} = useSelector((state)=>state.actors);
@@ -95,7 +95,7 @@ export const Actor = () => {
     },[])
 
 
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
     const {isLogged} = useSelector((state)=>state.user);
     const navigate = useNavigate();
     const submitHandler = (e)=>{

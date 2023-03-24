@@ -3,7 +3,7 @@ import Register from "./views/registration/Register";
 import Login from "./views/connexion/Login";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { Accueil } from './views/Home/accueil';
-import {Film} from "./views/Film/Film";
+import {Film, Films} from "./views/Film/Film";
 import {Admin} from "./views/admin/admin";
 import {ActorAdd, ActorUpdate, AdminActors} from "./views/admin/actors";
 import { AdminDirectors, DirectorAdd } from './views/admin/directors';
@@ -32,7 +32,8 @@ function App() {
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/actors" element={<Actors/>}/>
                 <Route path="/actors/actor/:id" element={<Actor/>}/>
-                <Route path="/Films" element={<Film/>}/>
+                <Route path="/films" element={<Films/>}/>
+                <Route path="/films/film/:id" element={<Film/>}/>
                 <Route path="/admin" element={<Admin/>}/>
                 <Route path="/admin/users" element={<AdminUsers/>}/>
                 <Route path="/admin/actors" element={<AdminActors/>}/>
