@@ -22,7 +22,7 @@ const newsActor2 = () => {
                 </div>
                 &nbsp;
 
-                <div className="w-6/12 flex-row justify-between items-center mt-0 flex">
+               {/* <div className="w-6/12 flex-row justify-between items-center mt-0 flex">
                     <img className="w-4 h-4 object-cover self-start" src={temps}/>
                     <span>{contenu2.temps}</span>
                     <img className="w-4 h-3 object-cover mb-0 ml-4" src={jaime}/>
@@ -30,7 +30,7 @@ const newsActor2 = () => {
                     <img className="w-4 h-4 object-cover ml-2" src={commentaire}/>
                     <span className="mb-0 ml-0">{contenu2.Nbcommentaire}</span>
 
-                </div>
+                </div>*/}
             </div>
 
 

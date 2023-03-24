@@ -17,6 +17,10 @@ import NewsActor2 from "./NewsActor2";
 import FilmNews from "./FilmNews";
 import Footer from "../../components/footer/Footer";
 
+//importe les modules pour la recupe des articles.
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 
 /**
  *
@@ -30,6 +34,10 @@ export const Accueil = (props) => {
     const {user, isLogged} = useSelector((state)=>state.user)
     console.log(isLogged)
 
+
+
+
+    //Affiche les articles récupérés
     return (
         // <ResponsiveLayout>
 
@@ -65,7 +73,9 @@ export const Accueil = (props) => {
                         </div>
 
                         {/*first news  actor section*/}
-                        <NewsActor/>
+
+                        {/*les articles récupéré seront afficher ici */}
+                        {/*<NewsActor/>*/}
 
 
                     </div>
