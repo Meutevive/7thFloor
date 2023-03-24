@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 @Data
 @Document(collection = "film")
@@ -18,9 +18,8 @@ public class Film {
     private String description;
     private String poster;
     private String pubDate;
-    private ArrayList<String> genres;
-    private ArrayList<String> actors;
-    private ArrayList<String> directors;
+    private List<String> genres;
+    private List<String> actors;
+    private List<String> directors;
     private Float note;
-
 }

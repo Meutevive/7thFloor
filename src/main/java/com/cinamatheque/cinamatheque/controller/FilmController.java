@@ -7,10 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,9 +25,9 @@ public class FilmController {
                            @RequestParam("title") String title,
                            @RequestParam("description") String description,
                            @RequestParam("pubDate") String pubDate,
-                           @RequestParam("genres") ArrayList<String> genres,
-                           @RequestParam("actors") ArrayList<String> actors,
-                           @RequestParam("directors") ArrayList<String> directors
+                           @RequestParam("genres") List<String> genres,
+                           @RequestParam("actors") List<String> actors,
+                           @RequestParam("directors") List<String> directors
     ) throws IOException {
         System.out.print(title);
         return filmService.saveFilm(file, title, description, pubDate, genres, actors, directors) ;

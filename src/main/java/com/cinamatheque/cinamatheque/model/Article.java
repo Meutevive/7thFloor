@@ -19,6 +19,8 @@ public class Article {
     private String content;
     private String cover;
     private Date created_at;
+    @DocumentReference
+    private List<Comment> commentList;
 
     public Article(String title, String description, String content, String cover, Date created_at) {
         this.title = title;
