@@ -25,6 +25,7 @@ export const Button = (props)=>{
         }else{
             buttonClass += "text-lg px-6 py-2.5 "
         }
+
         if (color === "white"){
             buttonClass +=" text-black bg-slate-50 ";
         }
