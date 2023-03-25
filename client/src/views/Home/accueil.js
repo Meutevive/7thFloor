@@ -13,7 +13,6 @@ import {FormGridFilm} from "../../components/Grid/FormGridFilm";
 import {useSelector} from "react-redux";
 import ResponsiveLayout from "../../components/responsive/ResponsiveLayout";
 import NewsActor from "./NewsActor";
-import NewsActor2 from "./NewsActor2";
 import FilmNews from "./FilmNews";
 import Footer from "../../components/footer/Footer";
 
@@ -39,7 +38,7 @@ export const Accueil = (props) => {
     return (
         <>
 
-            //LandingPage page container
+          {/* LandingPage page container*/}
             <div>
                 <div className=" flex flex-col items-stretch justify-around font-small
                              leading-3 text-white w-full bg-black h-full  space-y-5">
@@ -77,11 +76,6 @@ export const Accueil = (props) => {
 
 
 
-                        </div>
-
-                        {/*seconde news stations*/}
-                        <div className="row-span-2 col-span-2 space-x-2">
-                            <NewsActor2/>
                         </div>
 
                         {/*third section in the right*/}

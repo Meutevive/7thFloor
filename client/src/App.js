@@ -15,6 +15,7 @@ import {loginUser} from "./reducers/userReducer";
 import {AdminUsers} from "./views/admin/users";
 import {Actor, Actors} from "./views/actor/Actor";
 import {AdminArticles, ArticleAdd, Articles} from "./views/admin/articles";
+import Profile from "./views/profile/Profile";
 function App() {
     const dispatch = useDispatch();
     const token = localStorage.getItem("token");
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/home" element={<Accueil/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="/profil" element={<Profile/>}/>
                 <Route path="/actors" element={<Actors/>}/>
                 <Route path="/actors/actor/:id" element={<Actor/>}/>
                 <Route path="/films" element={<Films/>}/>
