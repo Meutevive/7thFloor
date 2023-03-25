@@ -18,7 +18,7 @@ import FilmNews from "./FilmNews";
 import Footer from "../../components/footer/Footer";
 
 //importe les modules pour la recupe des articles.
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 
@@ -31,69 +31,69 @@ import axios from "axios";
 
 export const Accueil = (props) => {
 
-    const {user, isLogged} = useSelector((state)=>state.user)
+    const {user, isLogged} = useSelector((state) => state.user)
     console.log(isLogged)
-
-
 
 
     //Affiche les articles récupérés
     return (
-        // <ResponsiveLayout>
+        <>
 
             //LandingPage page container
-        <div>
-            <div className=" flex flex-col items-stretch justify-around font-small
+            <div>
+                <div className=" flex flex-col items-stretch justify-around font-small
                              leading-3 text-white w-full bg-black h-full  space-y-5">
-                {/*Navbar*/}
-                <FormNavbar/>
+                    {/*Navbar*/}
+                    <FormNavbar/>
 
-                {/*film/serie/manga contents*/}
-                {/*doit défilier automatique, pour linstant il est statique*/}
-                <FormGridFilm/>
+                    {/*film/serie/manga contents*/}
+                    {/*doit défilier automatique, pour linstant il est statique*/}
+                    <FormGridFilm/>
 
 
-                {/*grid layout row and column layout*/}
-                <div className="grid grid-rows-3 grid-flow-col gap-4">
+                    {/*grid layout row and column layout*/}
+                    <div className="grid grid-rows-3 grid-flow-col gap-4">
 
-                    {/*nav btn*/}
-                    <div className="col-span-2">
+                        {/*nav btn*/}
+                        <div className="col-span-2">
 
-                        <div className=" flex flex-row ml-5 items-center mb-4">
-                            {/*btn de navigation*/}
+                            <div className=" flex flex-row ml-5 items-center mb-4">
+                                {/*btn de navigation*/}
 
-                            {/* les actus du moments*/}
-                            <FormActusMoment/>
+                                {/* les actus du moments*/}
+                                <FormActusMoment/>
 
-                            {/*les shows du moment*/}
-                            <FormShowMoment/>
+                                {/*les shows du moment*/}
+                                <FormShowMoment/>
 
-                            {/*les films du moments*/}
-                            <FormFilmMoment/>
+                                {/*les films du moments*/}
+                                <FormFilmMoment/>
+                            </div>
+
+                            {/*first news  actor section*/}
+
+                            {/*les articles récupéré seront afficher ici */}
+                            <NewsActor/>
+
+
+
                         </div>
 
-                        {/*first news  actor section*/}
+                        {/*seconde news stations*/}
+                        <div className="row-span-2 col-span-2 space-x-2">
+                            <NewsActor2/>
+                        </div>
 
-                        {/*les articles récupéré seront afficher ici */}
-                        {/*<NewsActor/>*/}
-
-
+                        {/*third section in the right*/}
+                        <FilmNews/>
                     </div>
 
-                    {/*seconde news stations*/}
-                    <div className="row-span-2 col-span-2 space-x-2">
-                        <NewsActor2/>
-                    </div>
-
-                    {/*third section in the right*/}
-                    <FilmNews/>
                 </div>
-
+                {/* Footer   */}
+                <Footer/>
             </div>
-        {/* Footer   */}
-            <Footer/>
-        </div>
-        // </ResponsiveLayout>
+
+        </>
     );
 }
 
