@@ -14,6 +14,7 @@ import jwt_decode from "jwt-decode";
 import {loginUser} from "./reducers/userReducer";
 import {AdminUsers} from "./views/admin/users";
 import {Actor, Actors} from "./views/actor/Actor";
+import {AdminArticles, ArticleAdd, Articles} from "./views/admin/articles";
 function App() {
     const dispatch = useDispatch();
     const token = localStorage.getItem("token");
@@ -43,7 +44,8 @@ function App() {
                 <Route path="/admin/films/add" element={<FilmAdd/>}/>
                 <Route path="/admin/directors" element={<AdminDirectors/>}/>
                 <Route path="/admin/directors/add" element={<DirectorAdd/>}/>
-                <Route path="/admin/home_elements" element={<Admin/>}/>
+                <Route path="/admin/articles" element={<AdminArticles/>}/>
+                <Route path="/admin/articles/add" element={<ArticleAdd/>}/>
                 <Route path="*" element={<h1>Error 404 page not found</h1>}/>
             </Routes>
         </Router>

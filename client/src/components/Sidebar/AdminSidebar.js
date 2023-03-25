@@ -5,18 +5,21 @@ import {fetchAllUsers} from "../../reducers/usersReducer";
 import {fetchAllActors} from "../../reducers/actorsReducer";
 import { fetchAllDirectors } from "../../reducers/directorsReducer";
 import { fetchAllFilms } from "../../reducers/filmsReducer";
+import {fetchAllArticles} from "../../reducers/articlesReducer";
 
 export const AdminSidebar = ()=>{
     const {allUsers} = useSelector((state)=>state.users)
     const {allActors} = useSelector((state)=>state.actors)
     const {allDirectors} = useSelector((state)=>state.directors)
     const {allFilms} = useSelector((state)=>state.films)
+    const {allArticles} = useSelector((state)=>state.articles)
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(fetchAllUsers())
         dispatch(fetchAllActors())
         dispatch(fetchAllDirectors())
         dispatch(fetchAllFilms())
+        dispatch(fetchAllArticles())
     },[])
     return(
         <section className="h-full px-3 py-4">
@@ -37,7 +40,7 @@ export const AdminSidebar = ()=>{
                     <Links name="actors" title="Acteurs" count={allActors.length}/>
                     <Links name="films" title="Filmographie" count={allFilms.length}/>
                     <Links name="directors" title="Réalisateurs" count={allDirectors.length}/>
-                    <Links name="display_home_page" title="Elements acceuil"/>
+                    <Links name="articles" title="Articles" count={allArticles.length}/>
                 </ul>
             </section>
     );
