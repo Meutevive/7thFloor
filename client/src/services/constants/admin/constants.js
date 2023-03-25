@@ -12,6 +12,11 @@ export const directorInitialValues = {
     birthdate: "",
 }
 
+export const articleInitialValues = {
+    title:"",
+    content:"",
+}
+
 export const filmInitialValues = {
     title:"",
     description:"",
@@ -76,6 +81,23 @@ export const validateActor = (actorValues)=> {
         errors.birthdate = "la date de naissance de l'acteur";
     } else {
         delete errors.birthdate
+    }
+
+    return errors;
+}
+export const validateArticle = (articleValues)=> {
+    const errors = {};
+
+    if (!articleValues.title) {
+        errors.title = "Vous devez rentrer le titre de l'article";
+    } else {
+        delete errors.title
+    }
+
+    if (!articleValues.content) {
+        errors.content = "vous devez rentrer le contenu de l'article";
+    } else {
+        delete errors.content
     }
 
     return errors;
