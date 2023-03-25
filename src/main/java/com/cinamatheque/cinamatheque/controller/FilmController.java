@@ -86,4 +86,11 @@ public class FilmController {
         filmRepository.deleteById(id);
         return "film deleted from database";
     }
+
+    // deleting all films
+    @DeleteMapping
+    public String deleteAllFilms(){
+        filmRepository.deleteAll();
+        return "All films has been deleted";
+    }
 }
