@@ -16,12 +16,12 @@ import java.util.Date;
 public class Acteur {
     @Id private String id;
     private String fullname;
-    private Date birthdate;
+    private String birthdate;
     private String country;
     private String description;
     private String posterActor;
 
-    public Acteur(String fullname, Date birthdate, String country, String description, String posterActor) {
+    public Acteur(String fullname, String birthdate, String country, String description, String posterActor) {
         this.fullname = fullname;
         this.birthdate = birthdate;
         this.country = country;

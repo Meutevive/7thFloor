@@ -17,7 +17,7 @@ public class ActeurService {
     private ActeurRepository acteurRepository;
 
 
-    public Acteur saveActeur (MultipartFile file, String fullname, Date birthdate, String country, String description) throws IOException {
+    public Acteur saveActeur (MultipartFile file, String fullname, String birthdate, String country, String description) throws IOException {
 
         Acteur actor = new Acteur();
 //        String fileName = StringUtils.cleanPath(file.getOriginalFilename());

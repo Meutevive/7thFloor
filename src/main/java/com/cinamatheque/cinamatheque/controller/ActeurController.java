@@ -25,10 +25,11 @@ public class ActeurController {
     public Acteur findActeurById(@PathVariable String id){
         return repository.findById(id).get();
     }
+
    @PostMapping
    public Acteur CreateActeur (@RequestParam("file") MultipartFile file,
                               @RequestParam("fullname") String fullname,
-                              @RequestParam("birthdate") Date birthdate,
+                              @RequestParam("birthdate") String birthdate,
                               @RequestParam("country") String country,
                               @RequestParam("description") String description
 
