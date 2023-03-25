@@ -1,24 +1,29 @@
 package com.cinamatheque.cinamatheque.controller;
 
+import com.cinamatheque.cinamatheque.dto.CommentDto;
+import com.cinamatheque.cinamatheque.model.Comment;
 import com.cinamatheque.cinamatheque.model.Film;
+import com.cinamatheque.cinamatheque.repository.CommentRepository;
 import com.cinamatheque.cinamatheque.repository.FilmRepository;
 import com.cinamatheque.cinamatheque.service.FilmService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/films")
 @AllArgsConstructor
 public class FilmController {
-    public FilmService filmService;
-    public FilmRepository filmRepository;
+    private final FilmService filmService;
+    private final FilmRepository filmRepository;
 
-    //safe film inside database with file safe
+    // // // // FILMS PART // // // //
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Film createFilm(@RequestParam("file") MultipartFile file,
@@ -92,5 +97,32 @@ public class FilmController {
     public String deleteAllFilms(){
         filmRepository.deleteAll();
         return "All films has been deleted";
+    }
+
+
+    // // // // COMMENTS PART // // // //
+
+    private final CommentRepository commentRepository;
+    @PostMapping("/{id}/comment")
+    public ResponseEntity<Film> addComment(@PathVariable String id, @RequestBody CommentDto commentDto){
+        Optional<Film> optionalFilm = filmRepository.findById(id);
+
+        if (optionalFilm.isEmpty()){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        Comment comment = commentRepository.save(commentDto.toComment());
+
+        Film filmToUpdate = optionalFilm.get();
+        List<Comment> commentList = filmToUpdate.getCommentList();
+
+        commentList.add(comment);
+
+        filmToUpdate.setCommentList(commentList);
+
+        Film updatedFilm = filmRepository.save(filmToUpdate);
+
+        return new ResponseEntity<>(updatedFilm, HttpStatus.CREATED);
+
     }
 }
