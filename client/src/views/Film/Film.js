@@ -224,8 +224,6 @@ export const  Film = ()=>{
                                  </div>
                              );
                         })
-
-
                    }
                 </div>
                 </section >
