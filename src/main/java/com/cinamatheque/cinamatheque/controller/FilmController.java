@@ -1,6 +1,5 @@
 package com.cinamatheque.cinamatheque.controller;
 
-import com.cinamatheque.cinamatheque.dto.CommentDto;
 import com.cinamatheque.cinamatheque.model.Comment;
 import com.cinamatheque.cinamatheque.model.Film;
 import com.cinamatheque.cinamatheque.model.User;
@@ -107,7 +106,9 @@ public class FilmController {
 
     private final CommentRepository commentRepository;
     @PostMapping("/{id}/comment")
-    public ResponseEntity<Film> addComment(@PathVariable String id, @RequestBody CommentDto commentDto){
+    public ResponseEntity<Film> addComment(@PathVariable String id,
+                                           @RequestParam("content") String author,
+                                           @RequestParam("author") String content){
         Optional<Film> optionalFilm = filmRepository.findById(id);
 
         if (optionalFilm.isEmpty()){
@@ -115,10 +116,10 @@ public class FilmController {
         }
 
         Comment comment = new Comment();
-        comment.setContent(commentDto.getContent());
+        comment.setContent(content);
 
-        User author = userRepository.findByUsername(commentDto.getAuthor()).get();
-        comment.setAuthor(author);
+        User user = userRepository.findByUsername(author).get();
+        comment.setAuthor(user);
         Comment newComment = commentRepository.save(comment);
 
         Film filmToUpdate = optionalFilm.get();
@@ -131,6 +132,5 @@ public class FilmController {
         Film updatedFilm = filmRepository.save(filmToUpdate);
 
         return new ResponseEntity<>(updatedFilm, HttpStatus.CREATED);
-
     }
 }
