@@ -58,7 +58,7 @@ export const FormNavbar = () => {
                                 <div className="py-1" role="menu" aria-orientation="vertical"
                                      aria-labelledby="options-menu">
                                     <Link
-                                        to="/profile"
+                                        to="/profil"
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem"
                                     >
@@ -66,7 +66,7 @@ export const FormNavbar = () => {
                                     </Link>
 
                                     <Link
-                                        to="/MesSeries"
+                                        to="/films"
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem"
                                     >
@@ -75,7 +75,7 @@ export const FormNavbar = () => {
                                     </Link>
 
                                     <Link
-                                        to="/MesFilm"
+                                        to="/films"
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem">
 
