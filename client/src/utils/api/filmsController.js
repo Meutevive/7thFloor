@@ -36,3 +36,12 @@ export const getFilm = async (id)=>{
     return await fetch(api+'/films/'+id, requestOptions);
 }
 
+export const getFilmByTitle = async (title)=>{
+    const requestOptions = {
+        method: 'GET',
+    }
+    return await fetch(api+'/films/'+title, requestOptions);
+}
+
+
+

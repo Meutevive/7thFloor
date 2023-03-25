@@ -8,7 +8,7 @@ import {useMediaQuery} from "react-responsive";
 import react, {useEffect, useState} from 'react';
 import axios from "axios";
 
-const NewsActor = () => {
+const Articles = () => {
 // Initialise un état pour stocker les articles récupéré
     const [article, setArticle] = useState([]);
 
@@ -45,7 +45,7 @@ const NewsActor = () => {
                         <div className="w-32">
                             <img
                                 className="object-fill w-full h-auto"
-                                src={article.cover}
+                                src={`data:image/jpeg;base64,${article.cover}`}
                                 alt={article._id}
                             />
                         </div>
@@ -64,12 +64,11 @@ const NewsActor = () => {
             ))}
         </>
 
-
     );
 
 
 }
 
-export default NewsActor;
+export default Articles;
 
 
