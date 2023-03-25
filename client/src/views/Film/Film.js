@@ -37,7 +37,7 @@ export const Films = ()=>{
       <div>
             <FormNavbar/>
           <div className="flex flex-row">
-                <div className="py-6 px-20 w-full max-w-screen-laptop flex flex-col space-y-5">
+                <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5">
                    {
                        allFilms.map((film)=>{
                             const {title, description, id, poster} = film;
@@ -45,8 +45,8 @@ export const Films = ()=>{
                            return (
                                <section className="py-4 px-4" key={id}>
                                    <div className="flex flex-row space-x-4">
-                                       <div id="image-elt">
-                                           <img className="object-fill w-40 h-52" src={posterSrc} alt="poster film"/>
+                                       <div className="w-40 shrink-0">
+                                          <img className="object-fill w-40 h-52" src={posterSrc} alt="poster film"/>
                                        </div>
                                        <div className="flex flex-col space-y-2">
                                             <Link to={"/films/film/"+id} className="mb-3 text-xl font-white">{title}</Link>
