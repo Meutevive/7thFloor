@@ -107,8 +107,10 @@ public class FilmController {
     private final CommentRepository commentRepository;
     @PostMapping("/{id}/comment")
     public ResponseEntity<Film> addComment(@PathVariable String id,
-                                           @RequestParam("content") String author,
-                                           @RequestParam("author") String content){
+                                           @RequestParam("content") String content,
+                                           @RequestParam("author") String author){
+
+        System.out.print(author);
         Optional<Film> optionalFilm = filmRepository.findById(id);
 
         if (optionalFilm.isEmpty()){
