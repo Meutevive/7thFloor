@@ -10,13 +10,5 @@ import lombok.Setter;
 @Setter
 public class CommentDto {
     private String content;
-
-    private User author;
-
-    public Comment toComment(){
-        Comment comment = new Comment();
-        comment.setContent(content);
-        comment.setAuthor(author);
-        return comment;
-    }
+    private String author;
 }

@@ -3,8 +3,10 @@ package com.cinamatheque.cinamatheque.controller;
 import com.cinamatheque.cinamatheque.dto.CommentDto;
 import com.cinamatheque.cinamatheque.model.Comment;
 import com.cinamatheque.cinamatheque.model.Film;
+import com.cinamatheque.cinamatheque.model.User;
 import com.cinamatheque.cinamatheque.repository.CommentRepository;
 import com.cinamatheque.cinamatheque.repository.FilmRepository;
+import com.cinamatheque.cinamatheque.repository.UserRepository;
 import com.cinamatheque.cinamatheque.service.FilmService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,7 @@ import java.util.Optional;
 public class FilmController {
     private final FilmService filmService;
     private final FilmRepository filmRepository;
+    private final UserRepository userRepository;
 
     // // // // FILMS PART // // // //
     @PostMapping
@@ -111,12 +114,17 @@ public class FilmController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
-        Comment comment = commentRepository.save(commentDto.toComment());
+        Comment comment = new Comment();
+        comment.setContent(commentDto.getContent());
+
+        User author = userRepository.findByUsername(commentDto.getAuthor()).get();
+        comment.setAuthor(author);
+        Comment newComment = commentRepository.save(comment);
 
         Film filmToUpdate = optionalFilm.get();
         List<Comment> commentList = filmToUpdate.getCommentList();
 
-        commentList.add(comment);
+        commentList.add(newComment);
 
         filmToUpdate.setCommentList(commentList);
 

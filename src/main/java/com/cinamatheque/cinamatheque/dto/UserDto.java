@@ -4,6 +4,7 @@ import com.cinamatheque.cinamatheque.model.User;
 import com.cinamatheque.cinamatheque.repository.UserRepository;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Getter
 @Setter
