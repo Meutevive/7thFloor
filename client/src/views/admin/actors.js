@@ -6,11 +6,13 @@ import {ActorsTable} from "../../components/table/admin/Actors";
 import {TextFieldMedium} from "../../components/forms/TextField/TextFieldMedium";
 import {TextFieldLarge} from "../../components/forms/TextField/TextFieldLarge";
 import {TextArea} from "../../components/forms/textarea/TextArea";
-import {actorInitialValues, validateActor} from "../../services/constants/admin/constants";
+import {actorInitialValues, selectedFilmsTypes, validateActor} from "../../services/constants/admin/constants";
 import {Button} from "../../components/buttons/Button";
 import {Link, useNavigate, useSearchParams, useParams} from "react-router-dom";
 import {addActor, deleteActor, getActor, updateActor} from "../../utils/api/actorsController";
 import {Confirm} from "../../components/modals/confirm";
+import {SelectField} from "../../components/forms/selectField/SelectField";
+import {countryList} from "../../services/constants/admin/countryList";
 
 
 export const AdminActors =()=>{
@@ -183,6 +185,8 @@ export const ActorAdd = ()=>{
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [message, setMessage] = useState("");
+    const [country, setCountry] = useState([]);
+    const [selectionCountries, setSelectionCountries] = useState(countryList);
     const submitHandler = (e)=>{
         e.preventDefault();
 
@@ -204,10 +208,22 @@ export const ActorAdd = ()=>{
 
     const handleChange = (e)=>{
         const {name, value, files} = e.target
+
         if(files){
             setActorValues({...actorValues,[name]:files[0]})
         }else{
-            setActorValues({...actorValues,[name]:value})
+            if(name === "country"){
+                let selectedCountry = country;
+                selectedCountry.push(value);
+                setCountry(selectedCountry);
+                setActorValues({...actorValues,[name]:value})
+                setSelectionCountries([])
+
+
+
+            }else{
+                setActorValues({...actorValues,[name]:value})
+            }
         }
     }
 
@@ -215,6 +231,12 @@ export const ActorAdd = ()=>{
         setFormErrors(validateActor(actorValues));
     },[actorValues])
 
+    const handleReset = ()=>{
+
+            setCountry([]);
+            setSelectionCountries(countryList);
+
+    }
     return (
          <div className="mx-5 py-12 my-0 flex flex-col items-center">
             <section className="py-6 px-20">
@@ -248,6 +270,17 @@ export const ActorAdd = ()=>{
                                         values={actorValues.birthdate}
                                         handleChange={handleChange}
                                         formError={formErrors.birthdate}
+                        />
+
+                         <SelectField label="pays d'origine"
+                                     type="genres"
+                                     name="country"
+                                     values={actorValues.country}
+                                     handleChange={handleChange}
+                                     listeSelected={country}
+                                     selection={selectionCountries}
+                                     handleReset={handleReset}
+
                         />
                         <TextArea
                                     label="description"

@@ -9,4 +9,12 @@ export const filmInitialValues = {
     reviews:[],
     comments:[]
 }
+
+export const actorInitialValues = {
+    fullname: "",
+    description: "",
+    birthdate: "10-10-2010",
+    country:""
+}
+
 export const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
