@@ -1,8 +1,6 @@
 import react from 'react';
-import ProfileAvis from "./ProfileAvis";
 import ProfileInfos from "./profileInfos";
 import ProfileFilms from "./ProfileFilms";
-import ProfileSeries from "./ProfileSeries";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 
 
@@ -25,15 +23,10 @@ const Profile = () => {
             {/* Profile Info */}
             <ProfileInfos/>
 
-            {/* Mes films */}
+            {/* Mes films et series */}
             <ProfileFilms/>
 
-            {/* Mes séries */}
-            <ProfileSeries/>
 
-            {/* Mes avis */}
-
-            <ProfileAvis/>
 
         </div>
 

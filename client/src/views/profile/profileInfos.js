@@ -3,15 +3,17 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-const getUserIdFromToken = (token) => {
+const getUsernameFromToken = (token) => {
     try {
         const decoded = jwt_decode(token);
-        return decoded.userId; // Assurez-vous que le JWT contient un champ 'userId' avec l'ID utilisateur
+        console.log("Decoded JWT:", decoded);
+        return decoded.sub; // Utilisez 'sub' pour récupér le 'username'
     } catch (error) {
         console.error("Erreur lors de la décodage du JWT:", error);
         return null;
     }
 };
+
 
 
 const ProfileInfos = () => {
@@ -21,10 +23,13 @@ const ProfileInfos = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const token = localStorage.getItem("jwt");
-                const userId = getUserIdFromToken(token);
-                if (userId) {
-                    const response = await axios.get(`http://localhost:8090/api/v1/user/${userId}`);
+                const token = localStorage.getItem("token"); // ligne pour utiliser "token"
+                console.log("JWT:", token);
+                const username = getUsernameFromToken(token);
+                console.log("Username:", username);
+                if (username) {
+                    const response = await axios.get(`http://localhost:8090/api/v1/users/${username}`);
+                    console.log("API Response:", response);
                     setUser(response.data);
                 }
             } catch (error) {
@@ -36,7 +41,7 @@ const ProfileInfos = () => {
     }, []);
 
 
-    // Affiche les informations de l'utilisateur
+    // Affiche les informations de l'utilisateur connecté
     return (
         <section className="px-8 py-6 mb-4">
             <div className="flex items-center space-x-4">
