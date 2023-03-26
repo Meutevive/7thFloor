@@ -25,7 +25,6 @@ export const FormNavbar = () => {
             </Link>
             <Link to="/films" className="mt-0 text-sm">tops shows </Link>
             <Link to="/actors" className="mt-0 text-sm">tops stars</Link>
-            <Link to="/" className="mt-0 text-sm ">Ma liste</Link>
 
             <div className="text-gray-400 flex-row justify-between items-center pt-1">
                 {/*static navbar*/}
@@ -66,16 +65,7 @@ export const FormNavbar = () => {
                                     </Link>
 
                                     <Link
-                                        to="/films"
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem"
-                                    >
-
-                                        Mes séries
-                                    </Link>
-
-                                    <Link
-                                        to="/films"
+                                        to="/movielist"
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem">
 

@@ -12,7 +12,7 @@ import {FormNavbar} from "../../components/navbar/FormNavbar";
 import {FormGridFilm} from "../../components/Grid/FormGridFilm";
 import {useSelector} from "react-redux";
 import ResponsiveLayout from "../../components/responsive/ResponsiveLayout";
-import NewsActor from "./NewsActor";
+import Articles from "./Articles";
 import FilmNews from "./FilmNews";
 import Footer from "../../components/footer/Footer";
 
@@ -72,7 +72,7 @@ export const Accueil = (props) => {
                             {/*first news  actor section*/}
 
                             {/*les articles récupéré seront afficher ici */}
-                            <NewsActor/>
+                            <Articles/>
 
 
 

@@ -7,7 +7,7 @@ import {Film, Films} from "./views/Film/Film";
 import {Admin} from "./views/admin/admin";
 import {ActorAdd, ActorUpdate, AdminActors} from "./views/admin/actors";
 import { AdminDirectors, DirectorAdd } from './views/admin/directors';
-import { AdminFilms, FilmAdd } from './views/admin/films';
+import {AdminFilms, FilmAdd, FilmUpdate} from './views/admin/films';
 
 import {useDispatch} from "react-redux";
 import jwt_decode from "jwt-decode";
@@ -16,6 +16,7 @@ import {AdminUsers} from "./views/admin/users";
 import {Actor, Actors} from "./views/actor/Actor";
 import {AdminArticles, ArticleAdd, Articles} from "./views/admin/articles";
 import Profile from "./views/profile/Profile";
+import MovieList from "./views/profile/MovieList";
 function App() {
     const dispatch = useDispatch();
     const token = localStorage.getItem("token");
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/profil" element={<Profile/>}/>
+                <Route path="movielist" element={<MovieList/>}/>
                 <Route path="/actors" element={<Actors/>}/>
                 <Route path="/actors/actor/:id" element={<Actor/>}/>
                 <Route path="/films" element={<Films/>}/>
@@ -44,6 +46,7 @@ function App() {
                 <Route path="/admin/actors/update/:id" element={<ActorUpdate/>}/>
                 <Route path="/admin/films" element={<AdminFilms/>}/>
                 <Route path="/admin/films/add" element={<FilmAdd/>}/>
+                <Route path="/admin/films/update/:id" element={<FilmUpdate/>}/>
                 <Route path="/admin/directors" element={<AdminDirectors/>}/>
                 <Route path="/admin/directors/add" element={<DirectorAdd/>}/>
                 <Route path="/admin/articles" element={<AdminArticles/>}/>

@@ -10,17 +10,27 @@ import {TextFieldMedium} from "../../components/forms/TextField/TextFieldMedium"
 import {fetchAllFilms} from "../../reducers/filmsReducer";
 import {filmInitialValues} from "../../services/constants/global";
 import {getActor, getActorByFullName} from "../../utils/api/actorsController";
-import {getFilm} from "../../utils/api/filmsController";
+import {getFilm, getFilmByTitle} from "../../utils/api/filmsController";
 import {options} from "../../services/constants/global";
+import {postComment} from "../../utils/api/commentsController";
 
 export const Films = ()=>{
+    const initialFilterValues = {
+        title:""
+    }
     const {allFilms} = useSelector((state)=>state.films);
-    const [filterValues, setFilterValues] = useState({})
+    const [filterValues, setFilterValues] = useState(initialFilterValues)
     const dispatch = useDispatch();
 
     const handleFilterSubmit = (e)=>{
         e.preventDefault();
         console.log(filterValues);
+        if(Object.keys(filterValues).length > 0){
+
+            getFilmByTitle(filterValues.title).then(res=>res.json()).then((film)=>{
+                console.log(film);
+            })
+        }
     }
     const handleChange = (e)=>{
         const {name, value} = e.target;
@@ -64,8 +74,8 @@ export const Films = ()=>{
                  <form onSubmit={handleFilterSubmit}>
                      <TextFieldMedium label="titre du film"
                                       placeholder="titre du film"
-                                      name="fullname"
-                                      values={filterValues.fullname}
+                                      name="title"
+                                      values={filterValues.title}
                                       handleChange={handleChange}/>
                      <Button text="valider"
                              size="small"
@@ -106,21 +116,21 @@ export const  Film = ()=>{
     },[])
 
     const {isLogged} = useSelector((state)=>state.user);
+    const {user} = useSelector((state)=>state.user);
     const navigate = useNavigate();
 
     const submitHandler = (e)=>{
         e.preventDefault();
         if(isLogged){
+             if(comment){
+                 postComment(filmValues.id, comment, user).then((data)=>{
+                      getFilm(id).then(res=>res.json()).then((film)=>{
+                        console.log(film);
+                        console.log(data);
+                    })
+                 });
 
-           Commentaires.push(
-                {
-                    name:"this test user",
-                    image:"/assets/images/avatar1.png",
-                    commentaire: comment
-                }
-            );
-            setComment("");
-            setComments(Commentaires);
+             }
         }else{
             navigate('/login');
         }

@@ -1,7 +1,8 @@
 export const actorInitialValues = {
     fullname: "",
     description: "",
-    birthdate: "10-10-2010",
+    birthdate: "",
+    country:""
 }
 
 
@@ -27,7 +28,12 @@ export const filmInitialValues = {
     directors : []
 }
 
-export const selectedFilmsTypes = ["action", "aventure", "romance", "horreur", "combat"];
+export const selectedFilmsTypes = [
+    "action", "aventure", "romance", "horreur", "combat", "animaux", "comedie","detective", "drame", "fantastique",
+"amitié", "loi", "manga", "mature", "melodrame", "musique", "politique", "sci-fi", "sport", "suspence", "tokusatu",
+"vampire", "westerne", "jeunesse", "bussness", "crime", "documentaire", "famille", "nourriture", "historique", "vie",
+"art-martiaux", "medical", "mystére", "psychologique", "thriller", "tragédie", "guerre", "wuxia", "zombie"];
+
 
 
 export const validateFilm = (filmValues)=>{
