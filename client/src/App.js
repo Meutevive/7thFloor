@@ -7,7 +7,7 @@ import {Film, Films} from "./views/Film/Film";
 import {Admin} from "./views/admin/admin";
 import {ActorAdd, ActorUpdate, AdminActors} from "./views/admin/actors";
 import { AdminDirectors, DirectorAdd } from './views/admin/directors';
-import { AdminFilms, FilmAdd } from './views/admin/films';
+import {AdminFilms, FilmAdd, FilmUpdate} from './views/admin/films';
 
 import {useDispatch} from "react-redux";
 import jwt_decode from "jwt-decode";
@@ -44,6 +44,7 @@ function App() {
                 <Route path="/admin/actors/update/:id" element={<ActorUpdate/>}/>
                 <Route path="/admin/films" element={<AdminFilms/>}/>
                 <Route path="/admin/films/add" element={<FilmAdd/>}/>
+                <Route path="/admin/films/update/:id" element={<FilmUpdate/>}/>
                 <Route path="/admin/directors" element={<AdminDirectors/>}/>
                 <Route path="/admin/directors/add" element={<DirectorAdd/>}/>
                 <Route path="/admin/articles" element={<AdminArticles/>}/>
