@@ -1,7 +1,7 @@
 import react from 'react';
 import ProfileInfos from "./profileInfos";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
-
+import ProfileAdditionalInfos from "./ProfileAdditionalInfos";
 
 const Profile = () => {
 
@@ -21,6 +21,10 @@ const Profile = () => {
 
             {/* Profile Info */}
             <ProfileInfos/>
+
+        {/* Profile additionalinfos   */}
+            <ProfileAdditionalInfos/>
+
         </div>
 
     );
