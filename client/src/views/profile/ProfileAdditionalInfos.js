@@ -122,7 +122,7 @@ const ProfileAdditionalInfos = () => {
                         </div>
 
                         <div>
-                            <input type="text" id="firstname" className="w-full px-3 py-2 border rounded" defaultValue={user.firstname} />
+                            <input ref={firstnameRef} type="text" id="firstname" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.firstname} />
                         </div>
 
                         <div>
@@ -130,7 +130,7 @@ const ProfileAdditionalInfos = () => {
                         </div>
 
                         <div>
-                            <input type="text" id="lastname" className="w-full px-3 py-2 border rounded" defaultValue={user.lastname} />
+                            <input  ref={lastnameRef} type="text" id="lastname" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.lastname} />
                         </div>
 
                         <div>
@@ -138,7 +138,7 @@ const ProfileAdditionalInfos = () => {
                         </div>
 
                         <div>
-                            <input type="email" id="email" className="w-full px-3 py-2 border rounded" defaultValue={user.email} />
+                            <input ref={emailRef} type="email" id="email" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.email} />
                         </div>
 
                         <div>
@@ -146,21 +146,21 @@ const ProfileAdditionalInfos = () => {
                         </div>
 
                         <div>
-                            <input type="text" id="gender" className="w-full px-3 py-2 border rounded" defaultValue={user.gender} />
+                            <input ref={genderRef} type="text" id="gender" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.gender} />
                         </div>
 
                         <div>
                             <label htmlFor="postcode" className="block text-sm font-bold mb-2">Code postal:</label>
                         </div>
                         <div>
-                            <input type="number" id="postcode" className="w-full px-3 py-2 border rounded" defaultValue={user.postcode} />
+                            <input ref={poscodeRef} type="text" id="postcode" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.postcode} />
                         </div>
 
                         <div>
                             <label htmlFor="adress" className="block text-sm font-bold mb-2">Adresse:</label>
                         </div>
                         <div>
-                            <input type="text" id="adress" className="w-full px-3 py-2 border rounded" defaultValue={user.adress} />
+                            <input  ref={addressRef} type="text" id="adress" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.adress} />
                         </div>
 
                         <div>
@@ -168,14 +168,14 @@ const ProfileAdditionalInfos = () => {
                         </div>
 
                         <div>
-                            <input type="text" id="country" className="w-full px-3 py-2 border rounded" defaultValue={user.country} />
+                            <input ref={countryRef} type="text" id="country" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.country} />
                         </div>
 
                         <div>
                             <label htmlFor="phone" className="block text-sm font-bold mb-2">Tel:</label>
                         </div>
                         <div>
-                            <input type="number" id="phone" className="w-full px-3 py-2 border rounded" defaultValue={user.phone} />
+                            <input  ref={phoneRef} type="text" id="phone" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.phone} />
                         </div>
 
 

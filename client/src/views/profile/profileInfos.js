@@ -65,7 +65,7 @@ const ProfileInfos = () => {
                 </div>
                 <div>
                     <h2 className="text-2xl font-semibold">{user.firstname} {user.lastname}</h2>
-                    <p className="text-sm text-gray-400">Membre depuis 2023</p>
+                    <p className="text-sm text-gray-400">Membre depuis {user.created_at}</p>
                 </div>
             </div>
         </section>
