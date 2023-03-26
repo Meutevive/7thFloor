@@ -128,11 +128,12 @@ public class FilmController {
         List<Comment> commentList = filmToUpdate.getCommentList();
 
         commentList.add(newComment);
+        System.out.print(commentList);
 
         filmToUpdate.setCommentList(commentList);
 
         Film updatedFilm = filmRepository.save(filmToUpdate);
 
-        return new ResponseEntity<>(updatedFilm, HttpStatus.CREATED);
+        return new ResponseEntity<>(updatedFilm, HttpStatus.OK);
     }
 }
