@@ -1,6 +1,5 @@
 import react from 'react';
 import ProfileInfos from "./profileInfos";
-import ProfileFilms from "./ProfileFilms";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 
 
@@ -22,12 +21,6 @@ const Profile = () => {
 
             {/* Profile Info */}
             <ProfileInfos/>
-
-            {/* Mes films et series */}
-            <ProfileFilms/>
-
-
-
         </div>
 
     );
