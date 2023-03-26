@@ -18,3 +18,10 @@ export const addArticle = async(articleValues)=>{
     }
     return await fetch(api+'/article', requestOptions);
 }
+
+export const deleteArticle = async (id)=>{
+     const requestOptions = {
+        method: 'DELETE',
+    }
+    return await fetch(api+'/articles/'+id, requestOptions);
+}

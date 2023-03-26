@@ -29,6 +29,30 @@ export const deleteFilm = async (id)=>{
     return await fetch(api+'/films/'+id, requestOptions);
 }
 
+export const updateFilm = async (filmValues)=>{
+
+    const data = {
+        id : filmValues.id,
+        title : filmValues.title,
+        description: filmValues.description,
+        pubDate: filmValues.pubDate,
+        genres : filmValues.genres,
+        actors : filmValues.actors,
+        directors: filmValues.directors
+    }
+    console.log(data);
+
+
+    const requestOptions = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }
+    return await fetch(api+'/films', requestOptions);
+}
+
 export const getFilm = async (id)=>{
     const requestOptions = {
         method: 'GET',

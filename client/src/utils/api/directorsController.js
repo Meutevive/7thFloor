@@ -18,3 +18,9 @@ export const addDirector = async(directorValues)=>{
     }
     return await fetch(api+'/director', requestOptions);
 }
+export const deleteDirector = async (id)=>{
+     const requestOptions = {
+        method: 'DELETE',
+    }
+    return await fetch(api+'/directors/'+id, requestOptions);
+}
