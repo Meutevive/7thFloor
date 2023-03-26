@@ -8,6 +8,7 @@ export const addActor = async(actorValues)=>{
     console.log(actorValues)
     let formData= new FormData();
     formData.append('fullname', actorValues.fullname)
+    formData.append('country', actorValues.country)
     formData.append('birthdate', actorValues.birthdate)
     formData.append('description', actorValues.description)
     formData.append('file', actorValues.image)
@@ -31,7 +32,8 @@ export const updateActor = async (actorValues)=>{
         id : actorValues.id,
         fullname : actorValues.fullname,
         birthdate : actorValues.birthdate,
-        description : actorValues.description
+        description : actorValues.description,
+        country : actorValues.country
     }
 
 

@@ -8,11 +8,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchAllActors} from "../../reducers/actorsReducer";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {getActor} from "../../utils/api/actorsController";
-import {actorInitialValues} from "../../services/constants/admin/constants";
 import {TextFieldMedium} from "../../components/forms/TextField/TextFieldMedium";
 import {FormSubmit} from "../../components/buttons/FormSubmit";
 import {Button} from "../../components/buttons/Button";
-import {options} from "../../services/constants/global";
+import {actorInitialValues, options} from "../../services/constants/global";
 
 export const Actors = ()=>{
     const {allActors} = useSelector((state)=>state.actors);
