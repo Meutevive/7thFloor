@@ -40,7 +40,6 @@ export const Films = ()=>{
 
     useEffect(()=>{
         dispatch(fetchAllFilms())
-        console.log(allFilms);
     },[])
 
     return (
@@ -97,23 +96,32 @@ export const  Film = ()=>{
     const [filmValues, setFilmValues] = useState(filmInitialValues);
     const [posterFilm, setPosterFilm] = useState()
     const [actors, setActors] = useState([]);
+    const [ov, setOv] = useState(false);
     const {id} = useParams();
+    let actor=[];
+             getFilm(id).then(res=>res.json()).then((film)=>{
+                   setFilmValues(film);
+                   setPosterFilm(film.poster);
+                   setOv(true);
+             })
 
-
-     useEffect(()=>{
-       getFilm(id).then(res=>res.json()).then((film)=>{
-           setFilmValues(film);
-           setPosterFilm(film.poster);
-
-             let actor=[];
-             film.actors.map((fullname)=>{
-                 getActorByFullName(fullname).then(res=>res.json()).then(data=>{
-                    actor.push(data[0]);
-                    setActors(actor);
-                 })
+        useEffect(()=>{
+             getFilm(id).then(res=>res.json()).then((film)=>{
+                   setFilmValues(film);
+                   setPosterFilm(film.poster);
+                   setOv(true);
+             })
+            filmValues.actors.map((fullname)=>{
+                     getActorByFullName(fullname).then(res=>res.json()).then(data=>{
+                         actor.push(data[0]);
+                         setActors(actor);
+                         console.log(data[0])
+                     })
+                console.log(ov)
             })
-       })
-    },[])
+
+        },[ov])
+
 
     const {isLogged} = useSelector((state)=>state.user);
     const {user} = useSelector((state)=>state.user);
@@ -226,10 +234,10 @@ export const  Film = ()=>{
                     <h1 className="mb-3 text-2xl text-red-600 font-bold">Acteurs et casting</h1>
                     <div className="flex flex-wrap -mr-12">
                     {
-                        actors.map(({id, fullname, posterActor})=>{
+                        actors.map(({fullname, id, posterActor})=>{
                              return (
                                  <div key={id} className="mb-7 ml-12">
-                                     <p>{fullname}</p>
+                                   <Link to={"/actors/actor/"+id}> <span>{fullname}</span></Link>
                                      <img className="object-fill w-40 h-52 rounded-md" src={`data:image/jpeg;base64,${posterActor}`} alt="actor"/>
                                  </div>
                              );
