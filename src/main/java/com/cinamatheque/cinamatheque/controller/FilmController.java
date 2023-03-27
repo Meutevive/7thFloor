@@ -42,9 +42,9 @@ public class FilmController {
 
 //     get film with pagination
     @GetMapping
-    public List<Film> getAllFilm(@RequestParam(defaultValue = "0") int page,
-                                 @RequestParam(defaultValue = "5") int size,
-                                 @RequestParam(defaultValue = "title") String sortby)
+    public List<Film> getAllFilm(@RequestParam(value = "page", defaultValue = "0") int page,
+                                 @RequestParam(value = "size", defaultValue = "5") int size,
+                                 @RequestParam(value = "sort", defaultValue = "title") String sortby)
     {
         return filmService.getFilmsBypagination(page, size, sortby, "ASC");
     }
@@ -136,4 +136,6 @@ public class FilmController {
 
         return new ResponseEntity<>(updatedFilm, HttpStatus.OK);
     }
+
+
 }
