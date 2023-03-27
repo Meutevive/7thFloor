@@ -42,7 +42,7 @@ const ProfileAdditionalInfos = () => {
     const firstnameRef = useRef();
     const lastnameRef = useRef();
     const emailRef = useRef();
-    const genderRef = useRef();
+    const genderRef = useRef(null);
     const poscodeRef = useRef();
     const addressRef = useRef();
     const countryRef = useRef();
@@ -152,7 +152,11 @@ const ProfileAdditionalInfos = () => {
                         </div>
 
                         <div>
-                            <input ref={genderRef} type="text" id="gender" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.gender} />
+                            <select ref={genderRef} type="text" id="gender" className="w-full px-3 py-2 border rounded bg-white text-black" defaultValue={user.gender}>
+                                <option value="M"> M </option>
+                                <option value="F"> F </option>
+                                <option value="Autre"> Autre </option>
+                            </select>
                         </div>
 
                         <div>
