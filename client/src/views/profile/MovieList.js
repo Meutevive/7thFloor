@@ -37,7 +37,7 @@ const MovieList = () => {
 
                             <div key={movie._id} className="bg-gray text-black p-4 rounded">
                                 <img className="w-30 h-52 object-cover rounded"
-                                     src={`data:image/png;base64,${movie.poster}`}
+                                     src={`data:image/jpeg;base64,${movie.poster}`}
                                      alt={movie.title}
                                 />
                                 <h3 className="text-l text-white font-bold mb-4 mt-4">{movie.title}</h3>
