@@ -80,6 +80,11 @@ const ProfileAdditionalInfos = () => {
                 country : updatedCountry,
                 phone: updatedPhone,
                 // ... (autres champs si nécessaire)
+
+                headers: {
+
+                    'Content-Type' : 'application/json',
+                },
             });
             // Mettre à jour l'état local avec les nouvelles informations
             setUser({
