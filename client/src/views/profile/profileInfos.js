@@ -25,6 +25,15 @@ const getInitials = (firstname, lastname) => {
     return firstname.charAt(0).toUpperCase() + lastname.charAt(0).toUpperCase();
 };
 
+const formatDate = (dateString) => {
+    if (!dateString) {
+        return '';
+    }
+
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+};
+
 
 
 
@@ -53,10 +62,6 @@ const ProfileInfos = () => {
     }, []);
 
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
-    };
 
 
 
@@ -81,5 +86,7 @@ const ProfileInfos = () => {
     );
 
 };
+
+// {formatDate(user.created_at)}
 
 export default ProfileInfos;

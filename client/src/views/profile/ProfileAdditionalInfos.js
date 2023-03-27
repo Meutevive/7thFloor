@@ -70,7 +70,8 @@ const ProfileAdditionalInfos = () => {
         // Logique de sauvegarde des modifications
         // Par exemple, envoyer les nouvelles informations à l'API pour mettre à jour les données de l'utilisateur
         try {
-            await axios.put(`http://localhost:8090/api/v1/users/${user.username}`, {
+            await axios.put(`http://localhost:8090/api/v1/users/update`, {
+                username : user.username,
                 firstname : updatedFistname,
                 lastname : updatedLastname,
                 email: updatedEmail,
@@ -80,6 +81,11 @@ const ProfileAdditionalInfos = () => {
                 country : updatedCountry,
                 phone: updatedPhone,
                 // ... (autres champs si nécessaire)
+
+                headers: {
+
+                    'Content-Type' : 'application/json',
+                },
             });
             // Mettre à jour l'état local avec les nouvelles informations
             setUser({
