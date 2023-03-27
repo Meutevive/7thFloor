@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -42,11 +43,12 @@ public class FilmController {
 
 //     get film with pagination
     @GetMapping
-    public List<Film> getAllFilm(@RequestParam(value = "page", defaultValue = "0") int page,
-                                 @RequestParam(value = "size", defaultValue = "5") int size,
-                                 @RequestParam(value = "sort", defaultValue = "title") String sortby)
+    public ResponseEntity<ArrayList<Film>> getAllFilm(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                @RequestParam(value = "size", defaultValue = "5") int size,
+                                                @RequestParam(value = "sort", defaultValue = "title") String sortby,
+                                                @RequestParam(value = "filter", defaultValue = "") String genre)
     {
-        return filmService.getFilmsBypagination(page, size, sortby, "ASC");
+        return filmService.getFilmsBypagination(page, size, sortby, "ASC", genre);
     }
 
     // get film by id

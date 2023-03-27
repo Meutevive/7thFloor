@@ -13,4 +13,6 @@ public interface FilmRepository
         extends MongoRepository<Film, String>{
     Film findByPubDate(Date pubDate);
     List<Film> findByTitle(String title);
+
+    List<Film> findAllByGenres(String genres);
 }
