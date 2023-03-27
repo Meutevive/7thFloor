@@ -36,8 +36,8 @@ const MovieList = () => {
                         <Link key={movie.id} to={`/films/film/${movie.id}`}>
 
                             <div key={movie._id} className="bg-gray text-black p-4 rounded">
-                                <img className="w-full h-48 object-cover rounded"
-                                     src={`data:image/png;base64,${movie.poster}`}
+                                <img className="w-30 h-52 object-cover rounded"
+                                     src={`data:image/jpeg;base64,${movie.poster}`}
                                      alt={movie.title}
                                 />
                                 <h3 className="text-l text-white font-bold mb-4 mt-4">{movie.title}</h3>

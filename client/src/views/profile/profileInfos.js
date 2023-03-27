@@ -53,6 +53,13 @@ const ProfileInfos = () => {
     }, []);
 
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+    };
+
+
+
     // Affiche les informations de l'utilisateur connecté
     return (
         <section className="px-8 py-6 mb-4">
@@ -65,7 +72,7 @@ const ProfileInfos = () => {
                 </div>
                 <div>
                     <h2 className="text-2xl font-semibold">{user.firstname} {user.lastname}</h2>
-                    <p className="text-sm text-gray-400">Membre depuis 2023</p>
+                    <p className="text-sm text-gray-400">Membre depuis {formatDate(user.created_at)}</p>
                 </div>
             </div>
         </section>
