@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path="/api/v1/director")
 @CrossOrigin(origins = "*")
+@AllArgsConstructor
 public class DirectorController {
 
     public DirectorRepository directorRepository;
