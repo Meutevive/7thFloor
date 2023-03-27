@@ -7,10 +7,10 @@ export const actorInitialValues = {
 
 
 export const directorInitialValues = {
-    firstname:"",
-    lastname:"",
+    fullname:"",
     description:"",
     birthdate: "",
+    country:""
 }
 
 export const articleInitialValues = {
@@ -49,27 +49,11 @@ export const validateFilm = (filmValues)=>{
 
 export const validateDirector = (directorValues)=>{
     const errors = {};
-    if (!directorValues.firstname) {
-        errors.firstname = "Vous devez rentrer le prénom de l'acteur";
+    if (!directorValues.fullname) {
+        errors.fullname = "Vous devez rentrer le nom du réalisateur";
     } else {
-        delete errors.firstname
+        delete errors.fullname
     }
-
-    if (!directorValues.lastname) {
-        errors.lastname = "Vous devez rentrer le nom de l'acteur";
-    } else {
-        delete errors.lastname
-    }
-
-    if (!directorValues.birthdate) {
-        errors.birthdate = "la date de naissance de l'acteur";
-    } else {
-        delete errors.birthdate
-    }
-
-    if(!directorValues.description){
-        errors.description= "Vous devez rentrer la description de l'acteur";
-    }else{delete errors.description}
 
     return errors;
 }

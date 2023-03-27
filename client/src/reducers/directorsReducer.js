@@ -3,7 +3,7 @@ import { getDirectors } from "../utils/api/directorsController";
 
 
 export const fetchAllDirectors = createAsyncThunk(
-    '/actors/fetchAllDirectors',
+    '/directors/fetchAllDirectors',
     ()=>{
         return getDirectors()
     }
@@ -15,7 +15,7 @@ const initialState = {
 }
 
 const directorsSlice = createSlice({
-    name: 'director',
+    name: 'directors',
     initialState,
     reducers:{},
     extraReducers:(builder)=>{
@@ -23,7 +23,7 @@ const directorsSlice = createSlice({
             state.isLoading = true;
         })
         builder.addCase(fetchAllDirectors.fulfilled, (state, action)=>{
-            state.allActors = action.payload;
+            state.allDirectors = action.payload;
             state.isLoading = false;
         })
         builder.addCase(fetchAllDirectors.rejected, (state)=>{

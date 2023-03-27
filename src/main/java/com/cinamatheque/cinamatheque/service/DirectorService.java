@@ -14,6 +14,7 @@ import java.util.Base64;
 import java.util.Date;
 
 @Service
+@AllArgsConstructor
 public class DirectorService  {
     public DirectorRepository directorRepository;
 
