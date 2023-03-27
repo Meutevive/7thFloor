@@ -1,4 +1,3 @@
-import react from 'react';
 import ProfileInfos from "./profileInfos";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 import ProfileAdditionalInfos from "./ProfileAdditionalInfos";
