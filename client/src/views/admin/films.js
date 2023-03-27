@@ -3,11 +3,18 @@ import {Search} from "../../components/forms/search/Search";
 import {Link, useNavigate} from "react-router-dom";
 import { FilmsTable } from "../../components/table/admin/Films";
 import { useEffect, useState } from "react";
-import { filmInitialValues, validateFilm } from "../../services/constants/admin/constants";
+import {
+    filmInitialValues,
+    selectedFilmsTypes,
+    selectedListGenres,
+    validateFilm
+} from "../../services/constants/admin/constants";
 import { addfilm } from "../../utils/api/filmsController";
 import { TextFieldLarge } from "../../components/forms/TextField/TextFieldLarge";
 import { Button } from "../../components/buttons/Button";
 import { TextArea } from "../../components/forms/textarea/TextArea";
+import {SelectField} from "../../components/forms/selectField/SelectField";
+import {useSelector} from "react-redux";
 
 
 
@@ -45,16 +52,27 @@ export const AdminFilms =()=>{
 }
 
 export const FilmAdd = ()=>{
-    const navigate = useNavigate()
+    const {allActors} = useSelector((state)=>state.actors);
+    const {allDirectors} = useSelector((state)=>state.directors);
+    const navigate = useNavigate();
+
     const [filmValues, setFilmValues] = useState(filmInitialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [message, setMessage] = useState("");
+    const [genres, setGenres] = useState([]);
+    const [selectionGenres, setSelectionGenres] = useState(selectedFilmsTypes);
+    const [actors, setActors] = useState([]);
+    const [selectionActors, setSelectionActors] = useState(allActors);
+
+    const [directors, setDirectors] = useState([]);
+    const [selectionDirectors, setSelectionDirectors] = useState(allDirectors);
+
     const submitHandler = (e)=>{
         e.preventDefault();
 
         if(Object.keys(formErrors).length === 0){
-
+            console.log(filmValues);
             addfilm(filmValues).then(response=>response.json()).then((response)=>{
                 if(response){
                     navigate('/admin/films')
@@ -70,12 +88,61 @@ export const FilmAdd = ()=>{
     }
 
     const handleChange = (e)=>{
-        console.log(formErrors)
+
         const {name, value, files} = e.target
+        if (name === "genres"){
+
+            let mySelectedList = genres;
+            if(genres.length <3){
+               mySelectedList.push(value);
+               setGenres(mySelectedList);
+               let newSelection = selectionGenres.filter((genre)=>genre !== value)
+               setSelectionGenres(newSelection);
+            }
+        }
+
+        if(name === "actors"){
+
+            let mySelectedList = actors;
+            mySelectedList.push(value);
+            setActors(mySelectedList);
+            let newSelection = selectionActors.filter((actor)=>actor.fullname !== value);
+            setSelectionActors(newSelection);
+        }
+        if(name === "directors"){
+
+            let mySelectedList = directors;
+            mySelectedList.push(value);
+            setDirectors(mySelectedList);
+            let newSelection = selectionActors.filter((director)=>director.fullname !== value);
+            setSelectionDirectors(newSelection);
+        }
+
         if(files){
             setFilmValues({...filmValues,[name]:files[0]})
         }else{
-            setFilmValues({...filmValues,[name]:value})
+            if(name === "genres"){
+                setFilmValues({...filmValues,[name]:genres})
+            }
+            else if(name === "actors") {
+                setFilmValues({...filmValues, [name]: actors})
+            }else if(name === "directors"){
+             setFilmValues({...filmValues,[name]:directors})
+            }else{
+                setFilmValues({...filmValues,[name]:value})
+            }
+        }
+    }
+
+    const handleReset = (name)=>{
+        if(name === "genres"){
+
+            setGenres([]);
+            setSelectionGenres(selectedFilmsTypes);
+        }
+        if(name === "actors"){
+            setActors([]);
+            setSelectionActors(allActors);
         }
     }
 
@@ -126,29 +193,35 @@ export const FilmAdd = ()=>{
                             formError={formErrors.description}
                         />
 
+                        <SelectField label="genres"
+                                     type="genres"
+                                     name="genres"
+                                     values={filmValues.genres}
+                                     handleChange={handleChange}
+                                     listeSelected={genres}
+                                     selection={selectionGenres}
+                                     handleReset={handleReset}
 
-                         <TextFieldLarge     label="genres"
-                                            type="text"
-                                            placeholder="entrer les genres du film séparé par un ;"
-                                            name="genres"
-                                            values={filmValues.genres}
-                                            handleChange={handleChange}
                         />
 
-                        <TextFieldLarge     label="acteurs"
-                                            type="text"
-                                            placeholder="entrer les acteurs du film séparé par un ;"
-                                            name="actors"
-                                            values={filmValues.actors}
-                                            handleChange={handleChange}
+                        <SelectField    label="acteurs"
+                                        type="acteurs"
+                                        name="actors"
+                                        listeSelected={actors}
+                                        selection={selectionActors}
+                                        values={filmValues.actors}
+                                        handleChange={handleChange}
+                                        handleReset={handleReset}
                         />
 
-                        <TextFieldLarge     label="directors"
-                                            type="text"
-                                            placeholder="entrer les réalisateurs du film séparé par un ;"
-                                            name="directors"
-                                            values={filmValues.directors}
-                                            handleChange={handleChange}
+                        <SelectField    label="réalisateurs"
+                                        type="directors"
+                                        name="directors"
+                                        listeSelected={directors}
+                                        selection={selectionDirectors}
+                                        values={filmValues.directors}
+                                        handleChange={handleChange}
+                                        handleReset={handleReset}
                         />
 
                         <TextFieldLarge

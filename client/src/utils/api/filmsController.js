@@ -7,15 +7,14 @@ export const getFilms =  ()=>{
 
 export const addfilm = async(filmValues)=>{
 
-        console.log(filmValues)
         let formData= new FormData();
         formData.append('title', filmValues.title)
         formData.append('description', filmValues.description)
         formData.append('pubDate', filmValues.pubDate)
         formData.append('genres', filmValues.genres)
-        formData.append('actor', filmValues.actorFirstname)
-        formData.append('director', filmValues.directorsFirstname)
-        formData.append('file', filmValues.image)
+        formData.append('actors', filmValues.actors)
+        formData.append('directors', filmValues.directors)
+        formData.append('file', filmValues.file)
         const requestOptions = {
                 method: 'POST',
                 body: formData

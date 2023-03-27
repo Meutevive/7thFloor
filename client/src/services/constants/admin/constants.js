@@ -9,7 +9,6 @@ export const directorInitialValues = {
     lastname:"",
     description:"",
     birthdate: "",
-
 }
 
 export const filmInitialValues = {
@@ -18,9 +17,12 @@ export const filmInitialValues = {
     genres : "",
     file : "",
     pubDate : "",
-    actors : "",
-    directors : ""
+    actors : [],
+    directors : []
 }
+
+export const selectedFilmsTypes = ["action", "aventure", "romance", "horreur", "combat"];
+
 
 export const validateFilm = (filmValues)=>{
     const errors = {};

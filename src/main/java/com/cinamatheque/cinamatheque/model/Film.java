@@ -23,6 +23,7 @@ public class Film {
     private ArrayList<String> directors;
     private String comments;
 
+
     public Film(String title, String description, String poster, String pubDate, ArrayList<String> genres, ArrayList<String> actors, ArrayList<String> directors) {
         this.title = title;
         this.description = description;
@@ -33,3 +34,4 @@ public class Film {
         this.directors = directors;
     }
 }
+
