@@ -44,7 +44,7 @@ export const Actors = ()=>{
                            return (
                                <section className="py-4 px-4" key={id}>
                                    <div className="flex flex-row space-x-4">
-                                       <div id="image-elt">
+                                       <div className="w-40 shrink-0">
                                            <img className="object-fill w-40 h-52" src={posterSrc} alt="poster actor"/>
                                        </div>
                                        <div className="flex flex-col space-y-2">
@@ -125,7 +125,7 @@ export const Actor = () => {
                         <div className="flex flex-col items-center space-y-4">
                             {
                                 posterActor &&
-                                <div className="w-40">
+                                <div className="w-40 ">
                                     <img className="object-fill w-48 h-52 rounded-lg"
                                          src={`data:image/jpeg;base64,${posterActor}`}
                                          alt="KH"/>
