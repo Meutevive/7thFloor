@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const getUsernameFromToken = (token) => {
@@ -99,7 +102,15 @@ const ProfileAdditionalInfos = () => {
                 country : updatedCountry,
                 phone: updatedPhone,
                 // ... (autres champs si nécessaire)
+
             });
+
+            // Afficher une notification toast pour confirmer la mise à jour des informations
+            toast.success('Les informations ont été mises à jour avec succès !', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 3000,
+            });
+
         } catch (error) {
             console.error(error);
         }
@@ -226,6 +237,7 @@ const ProfileAdditionalInfos = () => {
                     </div>
 
                     <button className="mt-4 bg-red-600 text-white px-4 py-2 rounded" onClick={handleEdit}>Modifier</button>
+                  <ToastContainer/>
                 </>
             )}
         </section>

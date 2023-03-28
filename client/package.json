@@ -28,6 +28,7 @@
     "react-slick": "^0.29.0",
     "react-slideshow-image": "^4.2.1",
     "react-social-login-buttons": "^3.6.1",
+    "react-toastify": "^9.1.2",
     "react-twitter-login": "^1.5.0",
     "reactjs-social-login": "^2.6.1",
     "web-vitals": "^2.1.4"
