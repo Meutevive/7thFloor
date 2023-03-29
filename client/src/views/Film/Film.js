@@ -48,7 +48,7 @@ export const Films = ()=>{
           <div className="flex flex-row">
                 <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5">
                    {
-                       allFilms.map((film)=>{
+                       allFilms.content.map((film)=>{
                             const {title, description, id, poster} = film;
                             const posterSrc = `data:image/jpeg;base64,${poster}`;
                            return (
@@ -89,7 +89,7 @@ export const Films = ()=>{
     );
 }
 
-export const  Film = ()=>{
+export const  Film = () =>{
 
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState(Commentaires);
