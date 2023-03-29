@@ -8,8 +8,6 @@ import com.cinamatheque.cinamatheque.repository.FilmRepository;
 import com.cinamatheque.cinamatheque.repository.UserRepository;
 import com.cinamatheque.cinamatheque.service.FilmService;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
-import org.apache.coyote.http2.Http2Protocol;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -109,6 +107,7 @@ public class FilmController {
     // // // // COMMENTS PART // // // //
 
     private final CommentRepository commentRepository;
+
     @PostMapping("/{id}/comment")
     public ResponseEntity<Film> addComment(@PathVariable String id,
                                            @RequestParam("content") String content,

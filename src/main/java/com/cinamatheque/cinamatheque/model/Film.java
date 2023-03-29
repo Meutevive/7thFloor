@@ -32,6 +32,6 @@ public class Film {
 
     private Float note;
 
-    @DocumentReference(collection = "comment")
+    @DocumentReference(collection = "comment", lazy = true)
     private List<Comment> commentList;
 }
