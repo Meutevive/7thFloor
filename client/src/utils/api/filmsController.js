@@ -67,5 +67,9 @@ export const getFilmByTitle = async (title)=>{
     return await fetch(api+'/films/'+title, requestOptions);
 }
 
-
-
+export const getFilmByPagination = async ()=>{
+    const requestOptions = {
+        method: 'GET',
+    }
+    return await fetch(api+'/films?sort=pubDate')
+}

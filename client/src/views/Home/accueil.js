@@ -60,21 +60,19 @@ export const Accueil = (props) => {
                                 {/*btn de navigation*/}
 
                                 {/* les actus du moments*/}
-                                <FormActusMoment/>
+                               {/* <FormActusMoment/>*/}
 
                                 {/*les shows du moment*/}
-                                <FormShowMoment/>
+                                {/*<FormShowMoment/>*/}
 
                                 {/*les films du moments*/}
-                                <FormFilmMoment/>
+                             {/*   <FormFilmMoment/>*/}
                             </div>
 
                             {/*first news  actor section*/}
 
                             {/*les articles récupéré seront afficher ici */}
                             <Articles/>
-
-
 
                         </div>
 

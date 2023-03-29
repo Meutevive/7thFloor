@@ -13,20 +13,17 @@ const FilmNews = () => {
         async function fetchFilms() {
             try {
                 const response = await axios.get('http://localhost:8090/api/v1/films'); // Remplacez cette URL par l'URL de votre API
-                setFilms(response.data);
+                setFilms(response.data.content);
             } catch (error) {
                 console.error(error);
             }
         }
-
         fetchFilms();
     }, []);
 
     const recentFilms = films.slice(-3).reverse(); // Prend les 3 derniers films et les inverse pour avoir les plus récents
 
-
     return (
-
         <div className="row-span-3 space-x-2">
             <section className="flex flex-col py-4 px-12 w-4/5 mr-20 max-w-screen-desktop mt-14 leading-3">
                 <h1 className="mb-3 text-2xl font-black text-red-600">Les films les plus récents</h1>
@@ -34,9 +31,9 @@ const FilmNews = () => {
                     {recentFilms.map((film) => (
                         <div key={film.id} className="flex space-x-2 items-start">
                             <div className="flex flex-col items-center space-y-4">
-                                <div className="w-14">
+                                <div className="w-24">
                                     <img
-                                        className="w-18 h-20 items-center mt-4"
+                                        className="object-fill w-24 h-28 rounded-md items-center mt-4"
                                         src={`data:image/jpef;base64,${film.poster}`}
                                     />
                                 </div>

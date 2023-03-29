@@ -42,9 +42,9 @@ const Articles = () => {
                 >
                     <div className="article flex flex-row items-center space-x-4">
                         {/* Affiche le cover de l'article */}
-                        <div className="w-32">
+                        <div className="w-40">
                             <img
-                                className="object-fill w-full h-auto"
+                                className="object-fill w-40 h-52 rounded-md"
                                 src={`data:image/jpeg;base64,${article.cover}`}
                                 alt={article._id}
                             />
