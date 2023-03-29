@@ -14,8 +14,8 @@ export const FilmsTable = ({handleModal, handleUpdate})=>{
                     </tr>
                 </thead>
                 <tbody>
-                    { allFilms &&
-                        allFilms.content.map((data) => { 
+                    {allFilms  &&
+                        allFilms.map((data) => {
                           const {id, title} = data;
                               return (
                               <tr key={id}>
