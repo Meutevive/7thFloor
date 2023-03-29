@@ -11,7 +11,7 @@ export const SelectField = ({label,type, values, name, handleChange, listeSelect
                 {label}
             </label>
 
-              <div className="mb-2">
+              <div className="mb-2 flex flex-wrap space-x-2 space-y-2 items-center">
              {
                  listeSelected.map((data)=>{
 

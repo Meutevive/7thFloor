@@ -21,23 +21,15 @@ public class FilmService {
 
     private final FilmRepository filmRepository;
 
-    public ResponseEntity<ArrayList<Film>> getFilmsBypagination(int pageNo, int pageSize, String sortBy, String sortDir, String genre) {
+    public ResponseEntity<Page<Film>> getFilmsBypagination(int pageNo, int pageSize, String sortBy, String sortDir) {
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
 
         // create Pageable instance
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
         Page<Film> films = filmRepository.findAll(pageable);
 
-        ArrayList<Film> filteredFilms = new ArrayList<Film>();
-        if (genre != ""){
-            for (Film film: films){
-                if (film.getGenres().contains(genre)){
-                    filteredFilms.add(film);
-                }
-            }
-        }
         // get content for requested page
-        return new ResponseEntity<>(filteredFilms, HttpStatus.OK);
+        return new ResponseEntity<>(films, HttpStatus.OK);
     }
 
     public Film saveFilm (MultipartFile file, String title, String description, String pubDate, List<String> genres, List<String> actors, List<String> directors) throws IOException {

@@ -18,8 +18,6 @@ import {Confirm} from "../../components/modals/confirm";
 import {getActor, updateActor} from "../../utils/api/actorsController";
 
 
-
-
 export const AdminFilms =()=>{
     const [search,setSearch] = useState();
     const [selectedId, setSelectedId] = useState();
