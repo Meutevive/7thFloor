@@ -37,7 +37,7 @@ export const Links = (props)=>{
             </li>
         );
     }
-    else if(name === 'films'){
+    else if (name === 'films') {
         return (
             <li>
                 <Link to ="/admin/films"
@@ -63,7 +63,6 @@ export const Links = (props)=>{
             </li>
         );
     }
-
     else if(name === 'articles'){
         return (
               <li>
@@ -76,5 +75,4 @@ export const Links = (props)=>{
             </li>
         );
     }
-
 }

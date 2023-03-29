@@ -47,8 +47,8 @@ export const Films = ()=>{
             <FormNavbar/>
           <div className="flex flex-row">
                 <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5">
-                   {
-                       allFilms.content.map((film)=>{
+                    {
+                        allFilms.map((film) => {
                             const {title, description, id, poster} = film;
                             const posterSrc = `data:image/jpeg;base64,${poster}`;
                            return (
@@ -67,7 +67,6 @@ export const Films = ()=>{
                        })
                    }
                </div>
-
              <section className="py-4 px-4 max-w-xl self-start my-6">
                 <h1 className="mb-3 text-xl font-white">Filtre de recherche</h1>
                  <form onSubmit={handleFilterSubmit}>
@@ -81,7 +80,6 @@ export const Films = ()=>{
                              color="red"
                              type="submit"/>
                  </form>
-
              </section>
           </div>
 
