@@ -1,6 +1,7 @@
 /*import React, { useState } from 'react';
 import axios from 'axios';*/
 import React from "react";
+import {Link} from "react-router-dom";
 const ForgotPassword = () => {
 
    /* const [email, setEmail] = useState('');
@@ -52,6 +53,10 @@ const ForgotPassword = () => {
                     >
                         Réinitialiser le mot de passe
                     </button>
+                    <p className="mt-7">
+                        Vous avez déja un compte ? <Link to="/login" className="text-red-600 hover:underline">Connectez
+                        vous</Link>
+                    </p>
                 </form>
             </section>
         </div>
