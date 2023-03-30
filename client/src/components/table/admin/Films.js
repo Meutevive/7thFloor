@@ -1,8 +1,19 @@
-import {useSelector} from "react-redux";
+import { useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import { useLocation } from "react-router-dom";
+import { fetchAllFilms } from "../../../reducers/filmsReducer";
+import { Pagination } from "../../pagination/Pagination";
+
 
 export const FilmsTable = ({handleModal, handleUpdate})=>{
-    const { allFilms } = useSelector((state) => state.films)
+    const { allFilms, pages } = useSelector((state) => state.films)
+    const dispatch = useDispatch()
+    const query = new URLSearchParams(useLocation().search);
+    const page = query.get("page");
 
+    useEffect(() => {
+        dispatch(fetchAllFilms(page));
+    },[])
     return (
         <div>
             <table className="table-auto w-full text-left">
@@ -31,6 +42,7 @@ export const FilmsTable = ({handleModal, handleUpdate})=>{
                     }
                 </tbody>
             </table>
+            <Pagination totalPages={pages}/>
         </div>
     );
 }

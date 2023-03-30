@@ -1,8 +1,12 @@
 
 import { api } from "../../services/constants/api/constants";
 
-export const getFilms =  ()=>{
-    return  fetch(api+'/films').then((response)=>response.json())
+export const getFilms = (page) => {
+    console.log(page)
+    if (page === null) {
+        page = 0;
+    }
+    return fetch(api + '/films?page='+page).then((response) => response.json());
 }
 
 export const addfilm = async(filmValues)=>{

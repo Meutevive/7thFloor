@@ -3,13 +3,16 @@ import { getFilms } from "../utils/api/filmsController";
 
 export const fetchAllFilms = createAsyncThunk(
     '/films/fetchAllFilms',
-    ()=>{
-        return getFilms()
+    (page) => {
+        console.log(page);
+        return getFilms(page)
     }
 )
 
 const initialState = {
     allFilms: [],
+    elements: 0,
+    pages: 0,
     isLoading: false
 }
 
@@ -21,8 +24,11 @@ const filmsSlice = createSlice({
         builder.addCase(fetchAllFilms.pending, (state)=>{
             state.isLoading = true;
         })
-        builder.addCase(fetchAllFilms.fulfilled, (state, action)=>{
+        builder.addCase(fetchAllFilms.fulfilled, (state, action) => {
+            console.log(action.payload);
             state.allFilms = action.payload.content;
+            state.elements = action.payload.totalElements;
+            state.pages = action.payload.totalPages;
             state.isLoading = false;
         })
         builder.addCase(fetchAllFilms.rejected, (state)=> {

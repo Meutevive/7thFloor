@@ -6,22 +6,25 @@ import {fetchAllActors} from "../../reducers/actorsReducer";
 import { fetchAllDirectors } from "../../reducers/directorsReducer";
 import { fetchAllFilms } from "../../reducers/filmsReducer";
 import {fetchAllArticles} from "../../reducers/articlesReducer";
+import { useLocation } from "react-router-dom";
 
 export const AdminSidebar = ()=>{
     const {allUsers} = useSelector((state)=>state.users)
     const {allActors} = useSelector((state)=>state.actors)
     const {allDirectors} = useSelector((state)=>state.directors)
-    const {allFilms} = useSelector((state)=>state.films)
+    const {allFilms, elements} = useSelector((state)=>state.films)
     const {allArticles} = useSelector((state)=>state.articles)
     const dispatch = useDispatch()
+    const query = new URLSearchParams(useLocation().search);
+    const page = query.get("page");
 
-    useEffect(()=>{
-        dispatch(fetchAllFilms());
+    useEffect(() => {
+        dispatch(fetchAllFilms(page));
         dispatch(fetchAllUsers());
         dispatch(fetchAllActors());
         dispatch(fetchAllDirectors());
         dispatch(fetchAllArticles());
-    },[])
+    },[page])
 
     return(
         <section className="h-full px-3 py-4">
@@ -40,7 +43,7 @@ export const AdminSidebar = ()=>{
                 </li>
                 <Links name="users" title="Utilisateurs" count={allUsers.length}/>
                 <Links name="actors" title="Acteurs" count={allActors.length}/>
-                <Links name="films" title="Filmographie" count={allFilms.length}/>
+                <Links name="films" title="Filmographie" count={elements}/>
                 <Links name="directors" title="Réalisateurs" count={allDirectors.length}/>
                 <Links name="articles" title="Articles" count={allArticles.length}/>
             </ul>
