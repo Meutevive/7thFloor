@@ -1,14 +1,16 @@
 package com.cinamatheque.cinamatheque.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Date;
 
-@Document
 @Data
+@Document(collection = "token")
 public class PasswordResetToken {
     private static final int EXPIRATION = 60 * 24;
 
