@@ -1,6 +1,7 @@
 package com.cinamatheque.cinamatheque.auth;
 
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
@@ -42,5 +43,20 @@ public class AuthenticationController {
         return ResponseEntity.ok(
                 authenticationService.authenticate(request)
         );
+    }
+
+    @PostMapping("/resetPassword")
+    public ResponseEntity<String> resetPassword (HttpServletRequest request,
+                                                 @RequestParam("email") String email)
+    {
+        return authenticationService.forgotpassword(email);
+    }
+
+    @PostMapping("/newpassword")
+    public ResponseEntity<String> newPassword(HttpServletRequest request,
+                                              @RequestParam("password") String password,
+                                              @RequestParam("token") String token)
+    {
+
     }
 }
