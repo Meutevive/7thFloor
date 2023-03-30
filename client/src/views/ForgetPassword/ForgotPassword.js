@@ -5,15 +5,9 @@ import {Link} from "react-router-dom";
 import { forgotPassword } from "../../utils/api/authController";
 
 
-const ForgotPassword = () => {
 
 
 
-/**
- *
- * @returns {JSX.Element}
- * @constructor
- */
 
 const ForgotPassword = () => {
 

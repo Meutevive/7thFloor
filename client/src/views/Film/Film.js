@@ -20,15 +20,25 @@ export const Films = ()=>{
     }
     const {allFilms, pages} = useSelector((state)=>state.films);
     const [filterValues, setFilterValues] = useState(initialFilterValues);
+    const [researchValues, setResearchValue] = useState([]);
+    const [isResearch, setIsResearch] = useState(false);
+    const [noResult, setNoResult] = useState(false);
     const dispatch = useDispatch();
 
     const handleFilterSubmit = (e)=>{
         e.preventDefault();
         console.log(filterValues);
+        setIsResearch(true);
         if(Object.keys(filterValues).length > 0){
 
             getFilmByTitle(filterValues.title).then(res=>res.json()).then((film)=>{
                 console.log(film);
+                setResearchValue(film);
+                if (!film.length) {
+                    setNoResult(true)
+                } else {
+                    setNoResult(false);
+                }
             })
         }
     }
@@ -55,29 +65,64 @@ export const Films = ()=>{
     return (
       <div>
             <FormNavbar/>
-          <div className="flex flex-row">
-                <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5">
-                    {
-                        allFilms.map((film) => {
-                            const {title, description, id, poster} = film;
-                            const posterSrc = `data:image/jpeg;base64,${poster}`;
-                           return (
-                               <section className="py-4 px-4" key={id}>
-                                   <div className="flex flex-row space-x-4">
-                                       <div className="w-40 shrink-0">
-                                          <img className="object-fill w-40 h-52" src={posterSrc} alt="poster film"/>
-                                       </div>
-                                       <div className="flex flex-col space-y-2">
-                                            <Link to={"/films/film/"+id} className="mb-3 text-xl font-white">{title}</Link>
-                                            <p>{description.slice(0, 300)}</p>
-                                       </div>
-                                   </div>
-                               </section>
-                           );
-                       })
-                    }
-                    <Pagination totalPages={pages} link={link} />
-               </div>
+            <div className="flex flex-row">
+                {
+                    isResearch ?
+                        <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5">
+                            
+                            {
+                                
+                            researchValues.map((film) => {
+                                const { title, description, id, poster } = film;
+                                const posterSrc = `data:image/jpeg;base64,${poster}`;
+
+                             
+                                return (
+                                    <section className="py-4 px-4" key={id}>
+                                        <div className="flex flex-row space-x-4">
+                                            <div className="w-40 shrink-0">
+                                                <img className="object-fill w-40 h-52" src={posterSrc} alt="poster film" />
+                                            </div>
+                                            <div className="flex flex-col space-y-2">
+                                                <Link to={"/films/film/" + id} className="mb-3 text-xl font-white">{title}</Link>
+                                                <p>{description.slice(0, 300)}</p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                );
+                            })
+
+                            }
+                            {
+                                noResult && <section>Désolé il y'a pas de résultat correspondand à votre recherche</section>
+                            }
+                            
+                        </div> :
+                        <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5">
+                            {
+                                allFilms.map((film) => {
+                                    const { title, description, id, poster } = film;
+                                    const posterSrc = `data:image/jpeg;base64,${poster}`;
+                                    return (
+                                        <section className="py-4 px-4" key={id}>
+                                            <div className="flex flex-row space-x-4">
+                                                <div className="w-40 shrink-0">
+                                                    <img className="object-fill w-40 h-52" src={posterSrc} alt="poster film" />
+                                                </div>
+                                                <div className="flex flex-col space-y-2">
+                                                    <Link to={"/films/film/" + id} className="mb-3 text-xl font-white">{title}</Link>
+                                                    <p>{description.slice(0, 300)}</p>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    );
+                                })
+                            }
+                            <Pagination totalPages={pages} link={link} />
+                        </div>
+                }
+               
+
              <section className="py-4 px-4 max-w-xl self-start my-6">
                 <h1 className="mb-3 text-xl font-white">Filtre de recherche</h1>
                  <form onSubmit={handleFilterSubmit}>
