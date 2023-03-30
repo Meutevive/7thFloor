@@ -62,7 +62,7 @@ const AdminVerif = () => {
                 <Admin/>
             ) : (
                 <div className="error-message">
-                    Accès refusé : Vous devez être administrateur pour accéder à cette page.
+                    ACCÈS RÉFUSÉ : Vous devez être administrateur pour accéder à cette page.
                 </div>
             )}
         </>
