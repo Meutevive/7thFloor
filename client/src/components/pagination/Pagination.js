@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const Pagination = ({totalPages , last, number}) => {
+export const Pagination = ({totalPages , last, number, link}) => {
     return (
 
         <nav aria-label="Page navigation example">
@@ -10,7 +10,7 @@ export const Pagination = ({totalPages , last, number}) => {
                     [...Array(totalPages)].map((element, index) => {
                         return (
                             <li>
-                                <Link to={ "/admin/films?page="+index} className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700" >{ index}</Link>
+                                <Link to={ link+"?page="+index} className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700" >{ index}</Link>
                             </li>
                         );
                     })

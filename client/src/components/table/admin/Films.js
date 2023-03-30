@@ -10,6 +10,7 @@ export const FilmsTable = ({handleModal, handleUpdate})=>{
     const dispatch = useDispatch()
     const query = new URLSearchParams(useLocation().search);
     const page = query.get("page");
+    const link = "/admin/films";
 
     useEffect(() => {
         dispatch(fetchAllFilms(page));
@@ -42,7 +43,7 @@ export const FilmsTable = ({handleModal, handleUpdate})=>{
                     }
                 </tbody>
             </table>
-            <Pagination totalPages={pages}/>
+            <Pagination totalPages={pages} link={link} />
         </div>
     );
 }
