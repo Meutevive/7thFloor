@@ -45,7 +45,12 @@ export const Films = ()=>{
     useEffect(() => {
         dispatch(fetchAllFilms(page));
         console.log(page);
+        window.scroll(0, 0);
     }, [page])
+
+    useEffect(() => {
+        
+    },[])
 
     return (
       <div>
