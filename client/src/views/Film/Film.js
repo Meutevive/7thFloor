@@ -94,7 +94,7 @@ export const Films = ()=>{
 
                             }
                             {
-                                noResult && <section>Désolé il y'a pas de résultat correspondand à votre recherche</section>
+                                noResult && <section className="py-4 px-4">Désolé il y'a pas de résultat correspondand à votre recherche</section>
                             }
                             
                         </div> :
