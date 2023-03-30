@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
-import {Contenu, Khphotos, recompense} from "./test/Data";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons/faPaperPlane";
-import {Commentaires} from "../Film/test/Data";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllActors} from "../../reducers/actorsReducer";
 import {Link, useNavigate, useParams} from "react-router-dom";
@@ -81,13 +79,13 @@ export const Actors = ()=>{
 export const Actor = () => {
 
     const [comment, setComment] = useState("");
-    const [comments, setComments] = useState(Commentaires);
     const [actorValues, setActorValues] = useState(actorInitialValues);
     const [posterActor, setPosterActor]=useState()
     const {id} = useParams();
 
     useEffect(()=>{
-       getActor(id).then(res=>res.json()).then((actor)=>{
+        getActor(id).then(res => res.json()).then((actor) => {
+           console.log(actor)
            setActorValues(actor);
            setPosterActor(actor.posterActor);
        })
@@ -100,16 +98,7 @@ export const Actor = () => {
     const submitHandler = (e)=>{
         e.preventDefault();
         if(isLogged){
-
-            Commentaires.push(
-                {
-                    name:"this test user",
-                    image:"/assets/images/avatar1.png",
-                    commentaire: comment
-                }
-            );
-            setComment("");
-            setComments(Commentaires);
+            console.log("hello");
         }else{
             navigate('/login');
         }
@@ -179,6 +168,18 @@ export const Actor = () => {
 
                     </section>
                 }
+                
+                    
+                    <section className="py-6 px-20 w-10/12 max-w-screen-desktop">
+                        <h1 className="mb-3 text-2xl font-black text-red-600 font-bold">Films</h1>
+                        <div className="flex flex-wrap -mr-12">
+
+
+
+                        </div>
+
+                    </section>
+               
 
                 {
                     actorValues.recompenses &&

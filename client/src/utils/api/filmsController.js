@@ -15,12 +15,13 @@ export const addfilm = async(filmValues)=>{
         formData.append('actors', filmValues.actors)
         formData.append('directors', filmValues.directors)
         formData.append('file', filmValues.file)
+
         const requestOptions = {
                 method: 'POST',
                 body: formData
         }
         return await fetch(api+'/films', requestOptions);
-}
+        }
 
 export const deleteFilm = async (id)=>{
     const requestOptions = {
@@ -67,5 +68,9 @@ export const getFilmByTitle = async (title)=>{
     return await fetch(api+'/films/'+title, requestOptions);
 }
 
-
-
+export const getFilmByPagination = async ()=>{
+    const requestOptions = {
+        method: 'GET',
+    }
+    return await fetch(api+'/films?sort=pubDate')
+}

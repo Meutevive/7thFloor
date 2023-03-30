@@ -14,14 +14,15 @@ export const AdminSidebar = ()=>{
     const {allFilms} = useSelector((state)=>state.films)
     const {allArticles} = useSelector((state)=>state.articles)
     const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch(fetchAllUsers())
-        dispatch(fetchAllActors())
-        dispatch(fetchAllDirectors())
-        dispatch(fetchAllFilms())
-        dispatch(fetchAllArticles())
 
+    useEffect(()=>{
+        dispatch(fetchAllFilms());
+        dispatch(fetchAllUsers());
+        dispatch(fetchAllActors());
+        dispatch(fetchAllDirectors());
+        dispatch(fetchAllArticles());
     },[])
+
     return(
         <section className="h-full px-3 py-4">
             <ul className="space-y-2">

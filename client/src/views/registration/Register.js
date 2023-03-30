@@ -74,8 +74,6 @@ function Register() {
                         } else {
                             setMessage("Cet adresse email existe déja !")
                         }
-
-
                     })
                     setIsSubmit(true);
                 }

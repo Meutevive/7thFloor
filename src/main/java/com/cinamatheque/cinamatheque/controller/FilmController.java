@@ -8,6 +8,7 @@ import com.cinamatheque.cinamatheque.repository.FilmRepository;
 import com.cinamatheque.cinamatheque.repository.UserRepository;
 import com.cinamatheque.cinamatheque.service.FilmService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,30 +43,31 @@ public class FilmController {
 
 //     get film with pagination
     @GetMapping
-    public List<Film> getAllFilm(@RequestParam(value = "page", defaultValue = "0") int page,
-                                 @RequestParam(value = "size", defaultValue = "5") int size,
-                                 @RequestParam(value = "sort", defaultValue = "title") String sortby)
+    public ResponseEntity<Page<Film>> getAllFilm(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                 @RequestParam(value = "size", defaultValue = "5") int size,
+                                                 @RequestParam(value = "sort", defaultValue = "title") String sortby)
     {
         return filmService.getFilmsBypagination(page, size, sortby, "ASC");
     }
 
     // get film by id
     @GetMapping("/{id}")
-    public Film getFilmById(@PathVariable String id){
-        return filmRepository.findById(id).get();
+    public ResponseEntity<Film> getFilmById(@PathVariable String id){
+        return new ResponseEntity<>(filmRepository.findById(id).get(), HttpStatus.OK);
     }
 
 
     // get film by date se sorti
     @GetMapping("/search/{pubDate}")
     public Film getFilmWithDate(@PathVariable Date pubDate){
-        return filmRepository.findByPubDate(pubDate) ;
+        return filmRepository.findByPubDate(pubDate);
     }
 
 
     // get film by title
     @GetMapping("/search/{title}")
-    public List<Film> getFilmsByTitle(@PathVariable String title){
+    public List<Film> getFilmsByTitle(@PathVariable String title)
+    {
         return filmRepository.findByTitle(title);
     }
 
@@ -105,12 +107,11 @@ public class FilmController {
     // // // // COMMENTS PART // // // //
 
     private final CommentRepository commentRepository;
+
     @PostMapping("/{id}/comment")
     public ResponseEntity<Film> addComment(@PathVariable String id,
                                            @RequestParam("content") String content,
                                            @RequestParam("author") String author){
-
-        System.out.print(author);
         Optional<Film> optionalFilm = filmRepository.findById(id);
 
         if (optionalFilm.isEmpty()){
@@ -128,7 +129,6 @@ public class FilmController {
         List<Comment> commentList = filmToUpdate.getCommentList();
 
         commentList.add(newComment);
-        System.out.print(commentList);
 
         filmToUpdate.setCommentList(commentList);
 
@@ -136,6 +136,4 @@ public class FilmController {
 
         return new ResponseEntity<>(updatedFilm, HttpStatus.OK);
     }
-
-
 }

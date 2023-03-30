@@ -1,7 +1,6 @@
 import {Button} from "../../components/buttons/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons/faPaperPlane";
-import {Actors, Commentaires, Contenu, Reviews} from "./test/Data";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 import React, {useEffect, useState} from "react";
 import {json, Link, useNavigate, useParams} from "react-router-dom";
@@ -47,8 +46,8 @@ export const Films = ()=>{
             <FormNavbar/>
           <div className="flex flex-row">
                 <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5">
-                   {
-                       allFilms.map((film)=>{
+                    {
+                        allFilms.map((film) => {
                             const {title, description, id, poster} = film;
                             const posterSrc = `data:image/jpeg;base64,${poster}`;
                            return (
@@ -67,7 +66,6 @@ export const Films = ()=>{
                        })
                    }
                </div>
-
              <section className="py-4 px-4 max-w-xl self-start my-6">
                 <h1 className="mb-3 text-xl font-white">Filtre de recherche</h1>
                  <form onSubmit={handleFilterSubmit}>
@@ -81,7 +79,6 @@ export const Films = ()=>{
                              color="red"
                              type="submit"/>
                  </form>
-
              </section>
           </div>
 
@@ -89,10 +86,10 @@ export const Films = ()=>{
     );
 }
 
-export const  Film = ()=>{
+export const  Film = () =>{
 
     const [comment, setComment] = useState("");
-    const [comments, setComments] = useState(Commentaires);
+    
     const [filmValues, setFilmValues] = useState(filmInitialValues);
     const [posterFilm, setPosterFilm] = useState()
     const [actors, setActors] = useState([]);
