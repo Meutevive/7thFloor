@@ -59,5 +59,5 @@ export const getActorByFullName = async (fullname)=>{
      const requestOptions = {
         method: 'GET',
     }
-    return await fetch(api+'/acteur/search?fullname='+fullname, requestOptions);
+    return await fetch(api+'/acteur/search/'+fullname, requestOptions);
 }

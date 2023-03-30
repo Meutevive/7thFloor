@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Component
 public class CommentEventListener extends AbstractMongoEventListener<Comment> {
-
     @Override
     public void onBeforeConvert(BeforeConvertEvent<Comment> event){
         super.onBeforeConvert(event);

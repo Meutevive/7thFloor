@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
-import {Contenu, Khphotos, recompense} from "./test/Data";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons/faPaperPlane";
-import {Commentaires} from "../Film/test/Data";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllActors} from "../../reducers/actorsReducer";
 import {Link, useNavigate, useParams} from "react-router-dom";
@@ -44,7 +42,7 @@ export const Actors = ()=>{
                            return (
                                <section className="py-4 px-4" key={id}>
                                    <div className="flex flex-row space-x-4">
-                                       <div id="image-elt">
+                                       <div className="w-40 shrink-0">
                                            <img className="object-fill w-40 h-52" src={posterSrc} alt="poster actor"/>
                                        </div>
                                        <div className="flex flex-col space-y-2">
@@ -81,13 +79,13 @@ export const Actors = ()=>{
 export const Actor = () => {
 
     const [comment, setComment] = useState("");
-    const [comments, setComments] = useState(Commentaires);
     const [actorValues, setActorValues] = useState(actorInitialValues);
     const [posterActor, setPosterActor]=useState()
     const {id} = useParams();
 
     useEffect(()=>{
-       getActor(id).then(res=>res.json()).then((actor)=>{
+        getActor(id).then(res => res.json()).then((actor) => {
+           console.log(actor)
            setActorValues(actor);
            setPosterActor(actor.posterActor);
        })
@@ -100,16 +98,7 @@ export const Actor = () => {
     const submitHandler = (e)=>{
         e.preventDefault();
         if(isLogged){
-
-            Commentaires.push(
-                {
-                    name:"this test user",
-                    image:"/assets/images/avatar1.png",
-                    commentaire: comment
-                }
-            );
-            setComment("");
-            setComments(Commentaires);
+            console.log("hello");
         }else{
             navigate('/login');
         }
@@ -125,7 +114,7 @@ export const Actor = () => {
                         <div className="flex flex-col items-center space-y-4">
                             {
                                 posterActor &&
-                                <div className="w-40">
+                                <div className="w-40 ">
                                     <img className="object-fill w-48 h-52 rounded-lg"
                                          src={`data:image/jpeg;base64,${posterActor}`}
                                          alt="KH"/>
@@ -179,6 +168,18 @@ export const Actor = () => {
 
                     </section>
                 }
+                
+                    
+                    <section className="py-6 px-20 w-10/12 max-w-screen-desktop">
+                        <h1 className="mb-3 text-2xl font-black text-red-600 font-bold">Films</h1>
+                        <div className="flex flex-wrap -mr-12">
+
+
+
+                        </div>
+
+                    </section>
+               
 
                 {
                     actorValues.recompenses &&

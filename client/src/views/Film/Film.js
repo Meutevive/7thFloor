@@ -1,10 +1,9 @@
 import {Button} from "../../components/buttons/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons/faPaperPlane";
-import {Actors, Commentaires, Contenu, Reviews} from "./test/Data";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 import React, {useEffect, useState} from "react";
-import {json, Link, useNavigate, useParams} from "react-router-dom";
+import {json, Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {TextFieldMedium} from "../../components/forms/TextField/TextFieldMedium";
 import {fetchAllFilms} from "../../reducers/filmsReducer";
@@ -13,13 +12,14 @@ import {getActor, getActorByFullName} from "../../utils/api/actorsController";
 import {getFilm, getFilmByTitle} from "../../utils/api/filmsController";
 import {options} from "../../services/constants/global";
 import {postComment} from "../../utils/api/commentsController";
+import { Pagination } from "../../components/pagination/Pagination";
 
 export const Films = ()=>{
     const initialFilterValues = {
         title:""
     }
-    const {allFilms} = useSelector((state)=>state.films);
-    const [filterValues, setFilterValues] = useState(initialFilterValues)
+    const {allFilms, pages} = useSelector((state)=>state.films);
+    const [filterValues, setFilterValues] = useState(initialFilterValues);
     const dispatch = useDispatch();
 
     const handleFilterSubmit = (e)=>{
@@ -37,10 +37,19 @@ export const Films = ()=>{
         setFilterValues({...filterValues, [name]:value});
     }
 
+    const query = new URLSearchParams(useLocation().search);
+    const page = query.get("page");
+    
 
-    useEffect(()=>{
-        dispatch(fetchAllFilms())
-        console.log(allFilms);
+    const link = "/films";
+    useEffect(() => {
+        dispatch(fetchAllFilms(page));
+        console.log(page);
+        window.scroll(0, 0);
+    }, [page])
+
+    useEffect(() => {
+        
     },[])
 
     return (
@@ -48,8 +57,8 @@ export const Films = ()=>{
             <FormNavbar/>
           <div className="flex flex-row">
                 <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5">
-                   {
-                       allFilms.map((film)=>{
+                    {
+                        allFilms.map((film) => {
                             const {title, description, id, poster} = film;
                             const posterSrc = `data:image/jpeg;base64,${poster}`;
                            return (
@@ -66,9 +75,9 @@ export const Films = ()=>{
                                </section>
                            );
                        })
-                   }
+                    }
+                    <Pagination totalPages={pages} link={link} />
                </div>
-
              <section className="py-4 px-4 max-w-xl self-start my-6">
                 <h1 className="mb-3 text-xl font-white">Filtre de recherche</h1>
                  <form onSubmit={handleFilterSubmit}>
@@ -82,38 +91,48 @@ export const Films = ()=>{
                              color="red"
                              type="submit"/>
                  </form>
-
              </section>
-          </div>
+            </div>
+            
+            
 
        </div>
     );
 }
 
-export const  Film = ()=>{
+export const  Film = () =>{
 
     const [comment, setComment] = useState("");
-    const [comments, setComments] = useState(Commentaires);
+    
     const [filmValues, setFilmValues] = useState(filmInitialValues);
     const [posterFilm, setPosterFilm] = useState()
     const [actors, setActors] = useState([]);
+    const [ov, setOv] = useState(false);
     const {id} = useParams();
+    let actor=[];
+             getFilm(id).then(res=>res.json()).then((film)=>{
+                   setFilmValues(film);
+                   setPosterFilm(film.poster);
+                   setOv(true);
+             })
 
-
-     useEffect(()=>{
-       getFilm(id).then(res=>res.json()).then((film)=>{
-           setFilmValues(film);
-           setPosterFilm(film.poster);
-
-             let actor=[];
-             film.actors.map((fullname)=>{
-                 getActorByFullName(fullname).then(res=>res.json()).then(data=>{
-                    actor.push(data[0]);
-                    setActors(actor);
-                 })
+        useEffect(()=>{
+             getFilm(id).then(res=>res.json()).then((film)=>{
+                   setFilmValues(film);
+                   setPosterFilm(film.poster);
+                   setOv(true);
+             })
+            filmValues.actors.map((fullname)=>{
+                     getActorByFullName(fullname).then(res=>res.json()).then(data=>{
+                         actor.push(data[0]);
+                         setActors(actor);
+                         console.log(data[0])
+                     })
+                console.log(ov)
             })
-       })
-    },[])
+
+        },[ov])
+
 
     const {isLogged} = useSelector((state)=>state.user);
     const {user} = useSelector((state)=>state.user);
@@ -226,10 +245,10 @@ export const  Film = ()=>{
                     <h1 className="mb-3 text-2xl text-red-600 font-bold">Acteurs et casting</h1>
                     <div className="flex flex-wrap -mr-12">
                     {
-                        actors.map(({id, fullname, posterActor})=>{
+                        actors.map(({fullname, id, posterActor})=>{
                              return (
                                  <div key={id} className="mb-7 ml-12">
-                                     <p>{fullname}</p>
+                                   <Link to={"/actors/actor/"+id}> <span>{fullname}</span></Link>
                                      <img className="object-fill w-40 h-52 rounded-md" src={`data:image/jpeg;base64,${posterActor}`} alt="actor"/>
                                  </div>
                              );

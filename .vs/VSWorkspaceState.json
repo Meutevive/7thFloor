@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\services",
+    "\\client\\src\\services\\constants\\Connexion",
+    "\\client\\src\\services\\constants\\newPassword",
+    "\\client\\src\\services\\constants\\registration",
+    "\\client\\src\\utils",
+    "\\client\\src\\views",
+    "\\client\\src\\views\\connexion"
+  ],
+  "SelectedNode": "\\client\\src\\utils\\api\\authController.js",
+  "PreviewInSolutionExplorer": false
+}

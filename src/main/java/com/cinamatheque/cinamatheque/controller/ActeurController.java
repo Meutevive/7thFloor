@@ -22,7 +22,7 @@ public class ActeurController {
     // add image actor
     // get actor by id
     @GetMapping("/{id}")
-    public Acteur findActeurById(@PathVariable String id){
+    public Acteur findActeurById(@PathVariable("id") String id){
         return repository.findById(id).get();
     }
 
@@ -46,8 +46,7 @@ public class ActeurController {
 
     //    get actor by firstname
     @GetMapping("/search/{fullname}")
-    public List<Acteur> findActeurByFullname(@RequestParam String fullname){
-       System.out.print(fullname);
+    public List<Acteur> findActeurByFullname(@PathVariable("fullname") String fullname){
         return repository.findByFullnameLike(fullname);
     }
 

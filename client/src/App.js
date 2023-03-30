@@ -29,6 +29,7 @@ import AdminVerif from './views/admin/AdminVerif';
  * @routes-for-pages
  */
 
+import { NewPassword } from './views/ForgetPassword/NewPassword';
 function App() {
 
     const dispatch = useDispatch();
@@ -51,7 +52,8 @@ function App() {
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/profil" element={<Profile/>}/>
                 <Route path="movielist" element={<MovieList/>}/>
-                <Route path="forgotpassword" element={<ForgotPassword/>}/>
+                <Route path="/forgotpassword" element={<ForgotPassword />} />
+                <Route path="/newpassword" element={<NewPassword/>} />
                 <Route path="/actors" element={<Actors/>}/>
                 <Route path="/actors/actor/:id" element={<Actor/>}/>
                 <Route path="/films" element={<Films/>}/>

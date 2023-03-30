@@ -41,4 +41,10 @@ public class ArticleController {
     public Article putArticle(Article article){
         return article;
     }
+
+    @DeleteMapping("/id")
+    public String RemoveArticle(@PathVariable String id){
+        articleRepository.deleteById(id);
+        return "Article deleted in database";
+    }
 }

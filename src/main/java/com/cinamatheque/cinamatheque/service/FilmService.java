@@ -4,14 +4,14 @@ package com.cinamatheque.cinamatheque.service;
 import com.cinamatheque.cinamatheque.model.Film;
 import com.cinamatheque.cinamatheque.repository.FilmRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.*;
 
@@ -21,7 +21,7 @@ public class FilmService {
 
     private final FilmRepository filmRepository;
 
-    public List<Film> getFilmsBypagination(int pageNo, int pageSize, String sortBy, String sortDir) {
+    public ResponseEntity<Page<Film>> getFilmsBypagination(int pageNo, int pageSize, String sortBy, String sortDir) {
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
 
         // create Pageable instance
@@ -29,7 +29,7 @@ public class FilmService {
         Page<Film> films = filmRepository.findAll(pageable);
 
         // get content for requested page
-        return films.getContent();
+        return new ResponseEntity<>(films, HttpStatus.OK);
     }
 
     public Film saveFilm (MultipartFile file, String title, String description, String pubDate, List<String> genres, List<String> actors, List<String> directors) throws IOException {

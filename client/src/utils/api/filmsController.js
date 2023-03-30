@@ -1,8 +1,12 @@
 
 import { api } from "../../services/constants/api/constants";
 
-export const getFilms =  ()=>{
-    return  fetch(api+'/films').then((response)=>response.json())
+export const getFilms = (page) => {
+    console.log(page)
+    if (page === null) {
+        page = 0;
+    }
+    return fetch(api + '/films?page='+page).then((response) => response.json());
 }
 
 export const addfilm = async(filmValues)=>{
@@ -15,12 +19,13 @@ export const addfilm = async(filmValues)=>{
         formData.append('actors', filmValues.actors)
         formData.append('directors', filmValues.directors)
         formData.append('file', filmValues.file)
+
         const requestOptions = {
                 method: 'POST',
                 body: formData
         }
         return await fetch(api+'/films', requestOptions);
-}
+        }
 
 export const deleteFilm = async (id)=>{
     const requestOptions = {
@@ -67,5 +72,9 @@ export const getFilmByTitle = async (title)=>{
     return await fetch(api+'/films/'+title, requestOptions);
 }
 
-
-
+export const getFilmByPagination = async ()=>{
+    const requestOptions = {
+        method: 'GET',
+    }
+    return await fetch(api+'/films?sort=pubDate')
+}

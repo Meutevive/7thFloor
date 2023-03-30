@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
-
 import java.util.List;
 
 @Data
@@ -23,7 +22,6 @@ public class Film {
     private String poster;
 
     private String pubDate;
-
     private List<String> genres;
 
     private List<String> actors;
@@ -32,6 +30,7 @@ public class Film {
 
     private Float note;
 
-    @DocumentReference()
+    @DocumentReference(collection = "comment", lazy = true)
     private List<Comment> commentList;
 }
+

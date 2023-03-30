@@ -31,17 +31,16 @@ export const FormNavbar = () => {
             <Link to="/films" className="mt-0 text-sm">tops shows </Link>
             <Link to="/actors" className="mt-0 text-sm">tops stars</Link>
 
-            <div className="text-gray-400 flex-row justify-between items-center pt-1">
-                {/*static navbar*/}
+           {/* <div className="text-gray-400 flex-row justify-between items-center pt-1">
+                */}{/*static navbar*/}{/*
                 <input className="search-icon mt-0 w-56 h-8 rounded-full border bg-black text-gray-400 font-light flex
                                mb-1 ml-16 pl-3 mr-12"
                        type="text"
                        placeholder="Recherche ...."
                 />
-                {/* <span className="mt-0 ">recherche</span>
-            <img className="w-10 h-7 " src={rectangle1158} />*/}
+                
 
-            </div>
+            </div>*/}
 
             <div className="flex flex-row ml-5 items-center justify-center ">
                 {/* Vérifie si l'utilisateur est connecté */}

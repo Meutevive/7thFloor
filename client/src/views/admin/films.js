@@ -16,8 +16,7 @@ import {SelectField} from "../../components/forms/selectField/SelectField";
 import {useSelector} from "react-redux";
 import {Confirm} from "../../components/modals/confirm";
 import {getActor, updateActor} from "../../utils/api/actorsController";
-
-
+import { Pagination } from "../../components/pagination/Pagination";
 
 
 export const AdminFilms =()=>{
@@ -58,8 +57,13 @@ export const AdminFilms =()=>{
                 />
 
                 <Link to="/admin/films/add" className="text-white bg-red-600 p-3 rounded-xl self-start">+ Ajouter un nouveau film</Link>
-                <FilmsTable handleModal={handleModal} handleUpdate={handleUpdate}/>
+                <FilmsTable handleModal={handleModal} handleUpdate={handleUpdate} />
+                <div className="w-full justify-self-center">
+                    
+                </div>
+                
             </section>
+           
         </div>
     );
 }

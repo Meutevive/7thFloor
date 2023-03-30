@@ -3,7 +3,6 @@ import {useSelector} from "react-redux";
 
 export const ActorsTable = ({handleModal, handleUpdate})=>{
      const {allActors} = useSelector((state)=>state.actors)
-    console.log(allActors)
     return (
         <div>
             <table className="table-auto w-full text-left">
