@@ -23,15 +23,24 @@ const ForgotPassword = () => {
 
     const [isSubmit, setIsSubmit] = useState(false);
     const [email, setEmail] = useState("");
+    const [disable, setDisable] = useState(false)
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // Traiter la soumission du formulaire ici
 
         if (email !== null) {
+           
+            setDisable(!disable);
             forgotPassword(email).then((response) => {
-                console.log(response);
-                setIsSubmit(!isSubmit);
+                console.log(response.status);
+                if (response.status === 200) {
+                    setIsSubmit(!isSubmit);
+
+                } else {
+                    setDisable(false);
+                }
+                
             })
         } else {
             console.log("rentrer l'addresse mail")
@@ -66,11 +75,13 @@ const ForgotPassword = () => {
                                 onChange={(e) => setEmail(e.target.value) }
                                 value={email}
                                 required
+                              
                             />
                         </div>
                         <button
                             type="submit"
                             className="w-full bg-red-600 text-white font-bold py-2 px-4 rounded"
+                            disabled={disable}
                         >
                             Réinitialiser le mot de passe
                         </button>

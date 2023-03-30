@@ -4,6 +4,7 @@ import { Button } from "../../components/buttons/Button";
 import { TextFieldMedium } from "../../components/forms/TextField/TextFieldMedium";
 import { validate } from "../../services/constants/newPassword/constants";
 import { newPassword } from "../../utils/api/authController";
+import { useNavigate } from "react-router-dom";
 
 export const NewPassword = () => {
     const initialValues = {
@@ -19,7 +20,7 @@ export const NewPassword = () => {
 
     const query = new URLSearchParams(useLocation().search);
     const token = query.get("token");
-
+    const navigate = useNavigate(); 
     const handleChange = (e) => {
         const { name, value } = e.target
         setPasswordValues({ ...passwordValues, [name]: value });
@@ -28,9 +29,14 @@ export const NewPassword = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        console.log(token);
         if (Object.keys(formError).length === 0) {
             newPassword(passwordValues.password, token).then((response) => {
-                console.log(response);
+                
+                if (response.status === 200) {
+                    navigate("/login");
+                }
+               
             })
         } else {
             setIsSubmit(true);
