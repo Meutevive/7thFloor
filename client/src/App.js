@@ -18,6 +18,7 @@ import {AdminArticles, ArticleAdd, Articles} from "./views/admin/articles";
 import Profile from "./views/profile/Profile";
 import MovieList from "./views/profile/MovieList";
 import ForgotPassword from "./views/ForgetPassword/ForgotPassword";
+import { NewPassword } from './views/ForgetPassword/NewPassword';
 function App() {
     const dispatch = useDispatch();
     const token = localStorage.getItem("token");
@@ -36,7 +37,8 @@ function App() {
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/profil" element={<Profile/>}/>
                 <Route path="movielist" element={<MovieList/>}/>
-                <Route path="forgotpassword" element={<ForgotPassword/>}/>
+                <Route path="/forgotpassword" element={<ForgotPassword />} />
+                <Route path="/newpassword" element={<NewPassword/>} />
                 <Route path="/actors" element={<Actors/>}/>
                 <Route path="/actors/actor/:id" element={<Actor/>}/>
                 <Route path="/films" element={<Films/>}/>

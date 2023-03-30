@@ -3,10 +3,12 @@
     "",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\utils",
+    "\\client\\src\\components",
+    "\\client\\src\\components\\table",
+    "\\client\\src\\components\\table\\admin",
+    "\\client\\src\\reducers",
     "\\client\\src\\views",
-    "\\client\\src\\views\\admin"
+    "\\client\\src\\views\\Film"
   ],
-  "SelectedNode": "\\client\\src\\views\\admin\\actors.js",
   "PreviewInSolutionExplorer": false
 }

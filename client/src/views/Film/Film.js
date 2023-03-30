@@ -1,7 +1,6 @@
 import {Button} from "../../components/buttons/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons/faPaperPlane";
-import {Actors, Commentaires, Contenu, Reviews} from "./test/Data";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 import React, {useEffect, useState} from "react";
 import {json, Link, useNavigate, useParams} from "react-router-dom";
@@ -90,7 +89,7 @@ export const Films = ()=>{
 export const  Film = () =>{
 
     const [comment, setComment] = useState("");
-    const [comments, setComments] = useState(Commentaires);
+    
     const [filmValues, setFilmValues] = useState(filmInitialValues);
     const [posterFilm, setPosterFilm] = useState()
     const [actors, setActors] = useState([]);
