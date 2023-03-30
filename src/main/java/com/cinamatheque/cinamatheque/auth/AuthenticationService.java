@@ -15,8 +15,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -78,11 +78,18 @@ public class AuthenticationService {
     }
 
     public void createPasswordResetTokenForUser(User user, String token){
-        PasswordResetToken newToken = new PasswordResetToken(token, user);
+        // On cree le date d'expiration et on la programme pour +1 jours (+24 heures)
+        Date expirationDate = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(expirationDate);
+        cal.add(Calendar.DATE, 1);
+        expirationDate = cal.getTime();
+
+        PasswordResetToken newToken = new PasswordResetToken(token, user, expirationDate);
         passwordResetTokenRepository.save(newToken);
     }
 
-    public ResponseEntity<String> changePasssword(String password, String token) {
+    public ResponseEntity<String> changePassword(String password, String token) {
         String result = validatePasswordResetToken(token);
 
         if (result != null){
@@ -91,8 +98,12 @@ public class AuthenticationService {
             PasswordResetToken passwordResetToken = passwordResetTokenRepository.findByToken(token);
             User user = passwordResetToken.getUser();
 
-            user.setPassword(password);
+            user.setPassword(passwordEncoder.encode(password));
             userRepository.save(user);
+
+            System.out.print(user);
+            // On supprime le token
+            passwordResetTokenRepository.delete(passwordResetToken);
 
             return new ResponseEntity<>("Your password has been changed", HttpStatus.CREATED);
         }

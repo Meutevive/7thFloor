@@ -47,7 +47,7 @@ export const forgotPassword = async (email) => {
 
 export const newPassword = async (password, token) => {
     let formData = new FormData();
-    formData.append("email", password)
+    formData.append("password", password)
     formData.append("token", token)
     const requestOptions = {
         method: 'POST',

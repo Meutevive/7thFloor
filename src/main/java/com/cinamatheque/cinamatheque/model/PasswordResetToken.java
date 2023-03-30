@@ -1,8 +1,6 @@
 package com.cinamatheque.cinamatheque.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -21,8 +19,9 @@ public class PasswordResetToken {
     private User user;
     private Date expirationDate;
 
-    public PasswordResetToken(String token, User user) {
+    public PasswordResetToken(String token, User user, Date expirationDate) {
         this.token = token;
         this.user = user;
+        this.expirationDate = expirationDate;
     }
 }
