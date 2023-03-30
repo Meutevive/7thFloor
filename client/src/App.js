@@ -18,7 +18,19 @@ import {AdminArticles, ArticleAdd, Articles} from "./views/admin/articles";
 import Profile from "./views/profile/Profile";
 import MovieList from "./views/profile/MovieList";
 import ForgotPassword from "./views/ForgetPassword/ForgotPassword";
+import AdminVerif from './views/admin/AdminVerif';
+
+
+
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ * @routes-for-pages
+ */
+
 function App() {
+
     const dispatch = useDispatch();
     const token = localStorage.getItem("token");
 
@@ -26,6 +38,9 @@ function App() {
         const decoded = jwt_decode(token);
         dispatch(loginUser(decoded.sub))
     }
+
+
+
 
     return (
         <Router>
@@ -41,7 +56,7 @@ function App() {
                 <Route path="/actors/actor/:id" element={<Actor/>}/>
                 <Route path="/films" element={<Films/>}/>
                 <Route path="/films/film/:id" element={<Film/>}/>
-                <Route path="/admin" element={<Admin/>}/>
+                <Route path="/admin" element={<AdminVerif/>}/>
                 <Route path="/admin/users" element={<AdminUsers/>}/>
                 <Route path="/admin/actors" element={<AdminActors/>}/>
                 <Route path="/admin/actors/add" element={<ActorAdd/>}/>

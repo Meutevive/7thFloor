@@ -3,6 +3,12 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 
+/**
+ *
+ * @param token
+ * @returns {*|null}
+ */
+
 const getUsernameFromToken = (token) => {
     try {
         const decoded = jwt_decode(token);

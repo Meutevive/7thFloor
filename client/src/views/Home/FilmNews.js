@@ -5,6 +5,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const FilmNews = () => {
 
     const [films, setFilms] = useState([]);
