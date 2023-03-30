@@ -6,6 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
+/**
+ *
+ * @param token
+ * @returns {*|null}
+ */
+
 const getUsernameFromToken = (token) => {
     try {
         const decoded = jwt_decode(token);

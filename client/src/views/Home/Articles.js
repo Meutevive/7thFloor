@@ -3,11 +3,16 @@ import jaime from "../../assets/Svg/jaime.svg";
 import commentaire from "../../assets/Svg/commentaire.svg";
 import {useMediaQuery} from "react-responsive";
 
+
+
+
 //importe les modules pour la recupe des articles.
 import react, {useEffect, useState} from 'react';
 import axios from "axios";
 
 const Articles = () => {
+
+
 // Initialise un état pour stocker les articles récupéré
     const [article, setArticle] = useState([]);
 

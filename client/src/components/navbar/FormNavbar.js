@@ -8,6 +8,11 @@ import {logout} from "../../reducers/userReducer";
 import {useState} from "react";
 
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const FormNavbar = () => {
     const {isLogged} = useSelector((state) => state.user);
     const dispatch = useDispatch();

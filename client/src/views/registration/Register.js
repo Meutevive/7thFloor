@@ -14,6 +14,14 @@ import {authUser} from "../../utils/api/authController";
 import {useDispatch, useSelector} from "react-redux";
 import {loginUser} from "../../reducers/userReducer";
 
+
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
+
+
 function Register() {
 
     const navigate = useNavigate();

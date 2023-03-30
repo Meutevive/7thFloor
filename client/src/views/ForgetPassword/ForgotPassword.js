@@ -3,23 +3,20 @@ import axios from 'axios';*/
 import React, { useState } from "react";
 import {Link} from "react-router-dom";
 import { forgotPassword } from "../../utils/api/authController";
+
+
 const ForgotPassword = () => {
 
-   /* const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
 
-        try {
-            // Remplacez cette URL par l'URL de votre API pour la réinitialisation du mot de passe
-            await axios.post('http://localhost:8090/api/v1/forgot-password', { email });
-            setMessage('Un e-mail de réinitialisation du mot de passe a été envoyé à votre adresse e-mail.');
-        } catch (error) {
-            console.error(error);
-            setMessage("Une erreur s'est produite lors de l'envoi de l'e-mail de réinitialisation. Veuillez réessayer.");
-        }
-    };*/
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
+
+const ForgotPassword = () => {
+
 
     const [isSubmit, setIsSubmit] = useState(false);
     const [email, setEmail] = useState("");

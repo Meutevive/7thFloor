@@ -2,6 +2,12 @@ import ProfileInfos from "./profileInfos";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 import ProfileAdditionalInfos from "./ProfileAdditionalInfos";
 
+
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Profile = () => {
 
 
