@@ -46,16 +46,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/resetpassword")
-    public ResponseEntity<String> resetPassword (HttpServletRequest request,
-                                                 @RequestParam("email") String email)
+    public ResponseEntity<String> resetPassword (@RequestParam("email") String email)
     {
         return authenticationService.forgotpassword(email);
     }
 
     @PostMapping("/newpassword")
-    public ResponseEntity<String> newPassword(HttpServletRequest request,
-                                              @RequestParam("email") String email,
-                                              @RequestParam("password") String password,
+    public ResponseEntity<String> newPassword(@RequestParam("password") String password,
                                               @RequestParam("token") String token)
     {
         return authenticationService.changePasssword(password, token);
