@@ -117,6 +117,10 @@ function Login() {
 
                                 Vous n'avez pas de compte ? <Link to="/register"
                                                                   className="text-red-600 hover:underline">Inscrivez-Vous</Link>
+                            </p>
+                            <p className="mt-5">
+                             <Link to="/forgotpassword"
+                                   className="text-red-600 hover:underline">Mot de passe oublié?</Link>
                             </p><br/>
 
                             {/* Socials authentification*/}

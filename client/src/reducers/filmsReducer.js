@@ -22,14 +22,13 @@ const filmsSlice = createSlice({
             state.isLoading = true;
         })
         builder.addCase(fetchAllFilms.fulfilled, (state, action)=>{
-            state.allFilms = action.payload;
+            state.allFilms = action.payload.content;
             state.isLoading = false;
         })
-        builder.addCase(fetchAllFilms.rejected, (state)=>{
+        builder.addCase(fetchAllFilms.rejected, (state)=> {
             state.isLoading = false;
         })
     }
-
 })
 
 export default filmsSlice.reducer
