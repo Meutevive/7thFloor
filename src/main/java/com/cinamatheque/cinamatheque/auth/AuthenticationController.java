@@ -54,9 +54,10 @@ public class AuthenticationController {
 
     @PostMapping("/newpassword")
     public ResponseEntity<String> newPassword(HttpServletRequest request,
+                                              @RequestParam("email") String email,
                                               @RequestParam("password") String password,
                                               @RequestParam("token") String token)
     {
-
+        return authenticationService.changePasssword(password, token);
     }
 }
