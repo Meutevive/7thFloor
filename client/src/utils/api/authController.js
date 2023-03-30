@@ -34,3 +34,25 @@ export const authUser = async (type,userValues)=>{
         return response;
     }
 }
+
+export const forgotPassword = async (email) => {
+    let formData = new FormData();
+    formData.append("email", email)
+    const requestOptions = {
+        method: 'POST',
+        body: formData
+    }
+    return await fetch(api + '/auth/resetpassword', requestOptions);
+}
+
+export const newPassword = async (password, token) => {
+    let formData = new FormData();
+    formData.append("email", password)
+    formData.append("token", token)
+    const requestOptions = {
+        method: 'POST',
+        body: formData
+    }
+    return await fetch(api + '/auth/newpassword', requestOptions);
+}
+
