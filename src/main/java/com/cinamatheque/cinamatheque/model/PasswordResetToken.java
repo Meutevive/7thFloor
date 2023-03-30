@@ -15,7 +15,7 @@ public class PasswordResetToken {
     private static final int EXPIRATION = 60 * 24;
 
     @MongoId
-    private Long id;
+    private String id;
     private String token;
     @DocumentReference(collection = "user")
     private User user;
