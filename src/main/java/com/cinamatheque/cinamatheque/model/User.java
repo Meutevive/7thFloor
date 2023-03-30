@@ -5,13 +5,14 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.Assert;
-
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,6 +31,10 @@ public class User implements UserDetails {
     private String address;
     private String country;
     private String phone;
+    private Date created_at;
+
+    @DocumentReference
+    private List<Film> favoris;
 
     /*
      * each @param must not be {@literal null} or empty.

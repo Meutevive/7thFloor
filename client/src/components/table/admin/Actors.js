@@ -9,7 +9,7 @@ export const ActorsTable = ({handleModal, handleUpdate})=>{
                 <thead className="uppercase">
                     <tr>
                         <th scope="col" className="px-6 py-3">Id</th>
-                        <th scope="col" className="px-6 py-3">Prénom et nom</th>
+                        <th scope="col" className="px-6 py-3">Nom</th>
                         <th scope="col" className="px-6 py-3">Action</th>
                     </tr>
                 </thead>

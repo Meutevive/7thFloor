@@ -14,9 +14,7 @@ import java.util.Map;
 @RequestMapping("/api/v1/notice")
 @AllArgsConstructor
 public class NoticeController {
-
     private NoticeService noticeService;
-
     @PostMapping
     public ResponseEntity<Notice> createNotice(@RequestBody Map<String, String> payload){
         return new ResponseEntity<Notice>(noticeService.createNotice(payload.get("noticeTitle"), payload.get("filmId")), HttpStatus.CREATED);

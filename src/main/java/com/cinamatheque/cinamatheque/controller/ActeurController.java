@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -19,20 +20,21 @@ public class ActeurController {
 
     // Create actor to populate actor
     // add image actor
-
-    //    get actor by id
+    // get actor by id
     @GetMapping("/{id}")
-    public Acteur findActeurById(@PathVariable String id){
+    public Acteur findActeurById(@PathVariable("id") String id){
         return repository.findById(id).get();
     }
+
    @PostMapping
    public Acteur CreateActeur (@RequestParam("file") MultipartFile file,
                               @RequestParam("fullname") String fullname,
                               @RequestParam("birthdate") String birthdate,
+                              @RequestParam("country") String country,
                               @RequestParam("description") String description
 
    ) throws IOException {
-       return acteurService.safeActeur(file, fullname, birthdate, description);
+       return acteurService.saveActeur(file, fullname, birthdate, country, description);
    }
 
 
@@ -43,9 +45,8 @@ public class ActeurController {
     }
 
     //    get actor by firstname
-    @GetMapping("/search")
-    public List<Acteur> findActeurByFullname(@RequestParam String fullname){
-       System.out.print(fullname);
+    @GetMapping("/search/{fullname}")
+    public List<Acteur> findActeurByFullname(@PathVariable("fullname") String fullname){
         return repository.findByFullnameLike(fullname);
     }
 

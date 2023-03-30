@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { getFilms } from "../utils/api/filmsController";
 
 export const fetchAllFilms = createAsyncThunk(
-    '/actors/fetchAllFilms',
+    '/films/fetchAllFilms',
     ()=>{
         return getFilms()
     }
@@ -14,7 +14,7 @@ const initialState = {
 }
 
 const filmsSlice = createSlice({
-    name: 'film',
+    name: 'films',
     initialState,
     reducers:{},
     extraReducers:(builder)=>{
@@ -22,7 +22,7 @@ const filmsSlice = createSlice({
             state.isLoading = true;
         })
         builder.addCase(fetchAllFilms.fulfilled, (state, action)=>{
-            state.allActors = action.payload;
+            state.allFilms = action.payload;
             state.isLoading = false;
         })
         builder.addCase(fetchAllFilms.rejected, (state)=>{
