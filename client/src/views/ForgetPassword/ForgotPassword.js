@@ -2,6 +2,7 @@
 import axios from 'axios';*/
 import React, { useState } from "react";
 import {Link} from "react-router-dom";
+import { forgotPassword } from "../../utils/api/authController";
 const ForgotPassword = () => {
 
    /* const [email, setEmail] = useState('');
@@ -28,8 +29,10 @@ const ForgotPassword = () => {
         // Traiter la soumission du formulaire ici
 
         if (email !== null) {
-            setIsSubmit(!isSubmit);
-            console.log(email)
+            forgotPassword(email).then((response) => {
+                console.log(response);
+                setIsSubmit(!isSubmit);
+            })
         } else {
             console.log("rentrer l'addresse mail")
         }

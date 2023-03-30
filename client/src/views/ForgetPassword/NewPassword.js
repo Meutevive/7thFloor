@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Button } from "../../components/buttons/Button";
 import { TextFieldMedium } from "../../components/forms/TextField/TextFieldMedium";
 import { validate } from "../../services/constants/newPassword/constants";
@@ -10,11 +11,13 @@ export const NewPassword = () => {
     };
 
     const [passwordValues, setPasswordValues] = useState(initialValues);
-
     const [formError, setFormError] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [showError, setShowError] = useState(false);
     const [message, setMessage] = useState("Le formulaire que vous venez de soumettre contient des erreurs");
+
+    const query = new URLSearchParams(useLocation().search);
+    const token = query.get("token");
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -25,7 +28,7 @@ export const NewPassword = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         if (Object.keys(formError).length === 0) {
-            console.log(passwordValues)
+            console.log(passwordValues);
         } else {
             setIsSubmit(true);
             setShowError(true);
