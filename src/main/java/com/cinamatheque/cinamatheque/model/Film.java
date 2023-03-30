@@ -22,7 +22,6 @@ public class Film {
     private String poster;
 
     private String pubDate;
-
     private List<String> genres;
 
     private List<String> actors;
@@ -34,3 +33,4 @@ public class Film {
     @DocumentReference(collection = "comment", lazy = true)
     private List<Comment> commentList;
 }
+
