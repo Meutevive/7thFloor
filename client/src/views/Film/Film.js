@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons/faPaperPlane";
 import {FormNavbar} from "../../components/navbar/FormNavbar";
 import React, {useEffect, useState} from "react";
-import {json, Link, useNavigate, useParams} from "react-router-dom";
+import {json, Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {TextFieldMedium} from "../../components/forms/TextField/TextFieldMedium";
 import {fetchAllFilms} from "../../reducers/filmsReducer";
@@ -12,13 +12,14 @@ import {getActor, getActorByFullName} from "../../utils/api/actorsController";
 import {getFilm, getFilmByTitle} from "../../utils/api/filmsController";
 import {options} from "../../services/constants/global";
 import {postComment} from "../../utils/api/commentsController";
+import { Pagination } from "../../components/pagination/Pagination";
 
 export const Films = ()=>{
     const initialFilterValues = {
         title:""
     }
-    const {allFilms} = useSelector((state)=>state.films);
-    const [filterValues, setFilterValues] = useState(initialFilterValues)
+    const {allFilms, pages} = useSelector((state)=>state.films);
+    const [filterValues, setFilterValues] = useState(initialFilterValues);
     const dispatch = useDispatch();
 
     const handleFilterSubmit = (e)=>{
@@ -36,10 +37,15 @@ export const Films = ()=>{
         setFilterValues({...filterValues, [name]:value});
     }
 
+    const query = new URLSearchParams(useLocation().search);
+    const page = query.get("page");
+    
 
-    useEffect(()=>{
-        dispatch(fetchAllFilms())
-    },[])
+    const link = "/films";
+    useEffect(() => {
+        dispatch(fetchAllFilms(page));
+        console.log(page);
+    }, [page])
 
     return (
       <div>
@@ -64,7 +70,8 @@ export const Films = ()=>{
                                </section>
                            );
                        })
-                   }
+                    }
+                    <Pagination totalPages={pages} link={link} />
                </div>
              <section className="py-4 px-4 max-w-xl self-start my-6">
                 <h1 className="mb-3 text-xl font-white">Filtre de recherche</h1>
@@ -80,7 +87,9 @@ export const Films = ()=>{
                              type="submit"/>
                  </form>
              </section>
-          </div>
+            </div>
+            
+            
 
        </div>
     );
