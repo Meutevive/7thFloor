@@ -18,7 +18,6 @@ import java.util.List;
 
 @Data
 @Document
-
 public class User implements UserDetails {
     @Id private String id;
     @Indexed(unique = true) private String username;

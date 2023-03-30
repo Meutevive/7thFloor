@@ -15,5 +15,7 @@ public interface FilmRepository
     Film findByPubDate(Date pubDate);
     List<Film> findByTitle(String title);
 
+    List<Film> findAllByTitleLike(String title);
+
     List<Film> findAllByGenres(String genres);
 }

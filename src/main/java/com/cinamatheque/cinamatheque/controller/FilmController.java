@@ -58,8 +58,8 @@ public class FilmController {
 
 
     // get film by date se sorti
-    @GetMapping("/search/{pubDate}")
-    public Film getFilmWithDate(@PathVariable Date pubDate){
+    @GetMapping("/search")
+    public Film getFilmWithDate(@RequestParam("pubdate") Date pubDate){
         return filmRepository.findByPubDate(pubDate);
     }
 
@@ -68,7 +68,7 @@ public class FilmController {
     @GetMapping("/search/{title}")
     public List<Film> getFilmsByTitle(@PathVariable String title)
     {
-        return filmRepository.findByTitle(title);
+        return filmRepository.findAllByTitleLike(title);
     }
 
 
