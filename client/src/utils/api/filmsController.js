@@ -69,7 +69,7 @@ export const getFilmByTitle = async (title)=>{
     const requestOptions = {
         method: 'GET',
     }
-    return await fetch(api+'/films/'+title, requestOptions);
+    return await fetch(api+'/films/search/'+title, requestOptions);
 }
 
 export const getFilmByPagination = async ()=>{
