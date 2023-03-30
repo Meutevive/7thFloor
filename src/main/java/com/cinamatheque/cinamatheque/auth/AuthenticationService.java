@@ -88,7 +88,13 @@ public class AuthenticationService {
         if (result != null){
             return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
         }else{
-            return new ResponseEntity<>("new password", HttpStatus.CREATED);
+            PasswordResetToken passwordResetToken = passwordResetTokenRepository.findByToken(token);
+            User user = passwordResetToken.getUser();
+
+            user.setPassword(password);
+            userRepository.save(user);
+
+            return new ResponseEntity<>("Your password has been changed", HttpStatus.CREATED);
         }
     }
 
