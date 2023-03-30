@@ -45,7 +45,7 @@ public class AuthenticationController {
         );
     }
 
-    @PostMapping("/resetPassword")
+    @PostMapping("/resetpassword")
     public ResponseEntity<String> resetPassword (HttpServletRequest request,
                                                  @RequestParam("email") String email)
     {
