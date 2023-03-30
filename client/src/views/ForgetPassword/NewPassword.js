@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Button } from "../../components/buttons/Button";
 import { TextFieldMedium } from "../../components/forms/TextField/TextFieldMedium";
 import { validate } from "../../services/constants/newPassword/constants";
+import { newPassword } from "../../utils/api/authController";
 
 export const NewPassword = () => {
     const initialValues = {
@@ -28,7 +29,9 @@ export const NewPassword = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         if (Object.keys(formError).length === 0) {
-            console.log(passwordValues);
+            newPassword(passwordValues.password, token).then((response) => {
+                console.log(response);
+            })
         } else {
             setIsSubmit(true);
             setShowError(true);
