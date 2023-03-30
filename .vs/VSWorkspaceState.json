@@ -3,12 +3,14 @@
     "",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\components",
-    "\\client\\src\\components\\table",
-    "\\client\\src\\components\\table\\admin",
-    "\\client\\src\\reducers",
+    "\\client\\src\\services",
+    "\\client\\src\\services\\constants\\Connexion",
+    "\\client\\src\\services\\constants\\newPassword",
+    "\\client\\src\\services\\constants\\registration",
+    "\\client\\src\\utils",
     "\\client\\src\\views",
-    "\\client\\src\\views\\Film"
+    "\\client\\src\\views\\connexion"
   ],
+  "SelectedNode": "\\client\\src\\utils\\api\\authController.js",
   "PreviewInSolutionExplorer": false
 }
