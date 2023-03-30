@@ -1,4 +1,3 @@
-import {contenu1, contenu2} from "./test/Data";
 import temps from "../../assets/Svg/temps.svg";
 import jaime from "../../assets/Svg/jaime.svg";
 import commentaire from "../../assets/Svg/commentaire.svg";
