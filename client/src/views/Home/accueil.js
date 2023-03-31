@@ -47,7 +47,7 @@ export const Accueil = (props) => {
 
                     {/*film/serie/manga contents*/}
                     {/*doit défilier automatique, pour linstant il est statique*/}
-                    <FormGridFilm/>
+                    {/* <FormGridFilm/> */}
 
 
                     {/*grid layout row and column layout*/}

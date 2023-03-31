@@ -17,4 +17,11 @@ export const actorInitialValues = {
     country:""
 }
 
+export const directorInitialValues = {
+    fullname: "",
+    description: "",
+    birthdate: "10-10-2010",
+    country:""
+}
+
 export const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

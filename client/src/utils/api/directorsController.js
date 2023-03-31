@@ -34,3 +34,10 @@ export const getDirector = async (id)=>{
     return await fetch(api+'/director/'+id, requestOptions);
 }
 
+export const getDirectorByFullName = async (fullname)=>{
+     const requestOptions = {
+        method: 'GET',
+    }
+    return await fetch(api+'/director/search?fullname='+fullname, requestOptions);
+}
+
