@@ -76,7 +76,6 @@ export const Films = ()=>{
                                 const { title, description, id, poster } = film;
                                 const posterSrc = `data:image/jpeg;base64,${poster}`;
 
-                             
                                 return (
                                     <section className="py-4 px-4" key={id}>
                                         <div className="flex flex-row space-x-4">
@@ -98,7 +97,7 @@ export const Films = ()=>{
                             }
                             
                         </div> :
-                        <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5">
+                        <div className="py-6 px-20 w-full max-w-screen-laptop   flex-col space-y-5 ">
                             {
                                 allFilms.map((film) => {
                                     const { title, description, id, poster } = film;
@@ -262,7 +261,7 @@ export const  Film = () =>{
                                             <span>{
                                                 filmValues.directors.map(director=>{
                                                     return (
-                                                        <span>{director}, </span>
+                                                        <Link to={"/directors/director/"+director}>{director}, </Link>
                                                     );
                                                 })
                                             }</span>

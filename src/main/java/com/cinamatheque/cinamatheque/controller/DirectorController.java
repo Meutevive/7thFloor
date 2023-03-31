@@ -24,11 +24,11 @@ public class DirectorController {
     public DirectorService directorService;
 
     @GetMapping
-    public List<Director> getDirectors(){
+    public List<Director> getAllDirectors(){
         return directorRepository.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/search")
     public ResponseEntity<Director> getDirector(@RequestParam("fullname") String fullname){
         ResponseEntity<Director> response = new ResponseEntity(null, HttpStatus.OK);
         if (!fullname.isEmpty()){
@@ -47,7 +47,7 @@ public class DirectorController {
         return directorService.save(fullname, birthdate, country, description, poster);
     }
 
-    @DeleteMapping("/{id}")
+//    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") String id){
         directorRepository.deleteById(id);
     }

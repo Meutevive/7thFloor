@@ -8,7 +8,6 @@ import {Admin} from "./views/admin/admin";
 import {ActorAdd, ActorUpdate, AdminActors} from "./views/admin/actors";
 import { AdminDirectors, DirectorAdd } from './views/admin/directors';
 import {AdminFilms, FilmAdd, FilmUpdate} from './views/admin/films';
-
 import {useDispatch} from "react-redux";
 import jwt_decode from "jwt-decode";
 import {loginUser} from "./reducers/userReducer";
@@ -19,17 +18,9 @@ import Profile from "./views/profile/Profile";
 import MovieList from "./views/profile/MovieList";
 import ForgotPassword from "./views/ForgetPassword/ForgotPassword";
 import AdminVerif from './views/admin/AdminVerif';
-
-
-
-/**
- *
- * @returns {JSX.Element}
- * @constructor
- * @routes-for-pages
- */
-
 import { NewPassword } from './views/ForgetPassword/NewPassword';
+import { Director } from './views/realisateur/Director';
+
 function App() {
 
     const dispatch = useDispatch();
@@ -58,6 +49,7 @@ function App() {
                 <Route path="/actors/actor/:id" element={<Actor/>}/>
                 <Route path="/films" element={<Films/>}/>
                 <Route path="/films/film/:id" element={<Film/>}/>
+                <Route path="/directors/director/:fullname" element={<Director/>}/>
                 <Route path="/admin" element={<AdminVerif/>}/>
                 <Route path="/admin/users" element={<AdminUsers/>}/>
                 <Route path="/admin/actors" element={<AdminActors/>}/>

@@ -56,7 +56,7 @@ export const Actors = ()=>{
                    }
                </div>
 
-             <section className="py-4 px-4 max-w-xl self-start my-6">
+             {/* <section className="py-4 px-4 max-w-xl self-start my-6">
                 <h1 className="mb-3 text-xl font-white">Filtre de recherche</h1>
                  <form onSubmit={handleFilterSubmit}>
                      <TextFieldMedium label="Nom de l'acteur"
@@ -70,7 +70,7 @@ export const Actors = ()=>{
                              type="submit"/>
                  </form>
 
-             </section>
+             </section> */}
           </div>
 
        </div>
@@ -80,7 +80,7 @@ export const Actor = () => {
 
     const [comment, setComment] = useState("");
     const [actorValues, setActorValues] = useState(actorInitialValues);
-    const [posterActor, setPosterActor]=useState()
+    const [posterActor, setPosterActor] = useState()
     const {id} = useParams();
 
     useEffect(()=>{
