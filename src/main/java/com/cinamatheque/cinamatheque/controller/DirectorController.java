@@ -28,9 +28,14 @@ public class DirectorController {
         return directorRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Director getDirector(@PathVariable String id){
-        return directorRepository.findById(id).get();
+    @GetMapping
+    public ResponseEntity<Director> getDirector(@RequestParam("fullname") String fullname){
+        ResponseEntity<Director> response = new ResponseEntity(null, HttpStatus.OK);
+        if (!fullname.isEmpty()){
+            response = new ResponseEntity<>(directorRepository.findByFullname(fullname), HttpStatus.OK);
+        }
+
+        return response;
     }
 
     @PostMapping()

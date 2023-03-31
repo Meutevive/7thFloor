@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DirectorRepository
         extends MongoRepository<Director, String> {
-
+    Director findByFullname(String fullname);
 }

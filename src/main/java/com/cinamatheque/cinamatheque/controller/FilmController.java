@@ -120,15 +120,18 @@ public class FilmController {
 
         Comment comment = new Comment();
         comment.setContent(content);
+        comment.setAuthor(author);
 
-        User user = userRepository.findByUsername(author).get();
-        comment.setAuthor(user);
         Comment newComment = commentRepository.save(comment);
 
         Film filmToUpdate = optionalFilm.get();
         List<Comment> commentList = filmToUpdate.getCommentList();
 
+        System.out.print(commentList);
+
         commentList.add(newComment);
+
+        System.out.print(commentList);
 
         filmToUpdate.setCommentList(commentList);
 

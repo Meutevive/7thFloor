@@ -1,9 +1,12 @@
 package com.cinamatheque.cinamatheque.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.msgpack.jackson.dataformat.MessagePackExtensionType;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.List;
@@ -30,7 +33,8 @@ public class Film {
 
     private Float note;
 
+//    @JsonSerialize(using = MessagePackExtensionType.Serializer.class)
     @DocumentReference(collection = "comment", lazy = true)
+//    @DBRef
     private List<Comment> commentList;
 }
-
