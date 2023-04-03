@@ -47,7 +47,7 @@ export const Accueil = (props) => {
 
                     {/*film/serie/manga contents*/}
                     {/*doit défilier automatique, pour linstant il est statique*/}
-                    {/* <FormGridFilm/> */}
+                     <FormGridFilm/>
 
 
                     {/*grid layout row and column layout*/}
@@ -60,13 +60,13 @@ export const Accueil = (props) => {
                                 {/*btn de navigation*/}
 
                                 {/* les actus du moments*/}
-                               {/* <FormActusMoment/>*/}
+                                <FormActusMoment/>
 
                                 {/*les shows du moment*/}
-                                {/*<FormShowMoment/>*/}
+                                <FormShowMoment/>
 
                                 {/*les films du moments*/}
-                             {/*   <FormFilmMoment/>*/}
+                                <FormFilmMoment/>
                             </div>
 
                             {/*first news  actor section*/}

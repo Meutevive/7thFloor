@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import admin, {Admin} from "./admin";
+import {Admin} from "./admin";
 import jwt_decode from "jwt-decode";
 
 
@@ -34,7 +34,7 @@ const AdminVerif = () => {
                     const response = await axios.get(`http://localhost:8090/api/v1/users/${username}`);
 
                     // Vérifie si le rôle de l'utilisateur est "admin"
-                    if (response.data.role === "admin") {
+                    if (response.data.role === "ADMIN") {
                         // Si l'utilisateur est un administrateur, met à jour l'état isAdmin pour afficher le contenu de la page d'administration
                         setIsAdmin(true);
                     } else {
