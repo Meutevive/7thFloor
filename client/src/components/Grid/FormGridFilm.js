@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/App.css";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 
 
@@ -108,11 +109,13 @@ export const FormGridFilm = () => {
                     <div className="my-4 p-4 bg-gray-900 rounded-md">
                         <div className="grid grid-cols-7 gap-4 h-48 w-full bg-black rounded-md mx-auto justify-between mt-5">
                             {films.map((film, idx) => (
-                                <div
-                                    key={idx}
-                                    className={`h-full w-full bg-cover bg-center rounded-md border-2 border-red-500`}
-                                    style={{ backgroundImage: `url(data:image/jpeg;base64,${film.poster})` }}
-                                />
+                                <Link key={film.id} to={`/films/film/${film.id}`}>
+                                    <div
+                                        key={idx}
+                                        className={`h-full w-full bg-cover bg-center rounded-md border-2 border-red-500`}
+                                        style={{ backgroundImage: `url(data:image/jpeg;base64,${film.poster})` }}
+                                    />
+                                </Link>
                             ))}
                         </div>
                     </div>
