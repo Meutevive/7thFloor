@@ -80,7 +80,7 @@ export const Films = ()=>{
                                     <section className="py-4 px-4" key={id}>
                                         <div className="flex flex-row space-x-4">
                                             <div className="w-40 shrink-0">
-                                                <img className="object-fill w-40 h-52" src={posterSrc} alt="poster film" />
+                                                <img className="object-fill w-40 h-52 border-2 " src={posterSrc} alt="poster film" />
                                             </div>
                                             <div className="flex flex-col space-y-2">
                                                 <Link to={"/films/film/" + id} className="mb-3 text-xl font-white">{title}</Link>
@@ -106,7 +106,7 @@ export const Films = ()=>{
                                         <section className="py-4 px-4" key={id}>
                                             <div className="flex flex-row space-x-4">
                                                 <div className="w-40 shrink-0">
-                                                    <img className="object-fill w-40 h-52" src={posterSrc} alt="poster film" />
+                                                    <img className="object-fill w-40 h-52 border-red-500 rounded-md" src={posterSrc} alt="poster film" />
                                                 </div>
                                                 <div className="flex flex-col space-y-2">
                                                     <Link to={"/films/film/" + id} className="mb-3 text-xl font-white">{title}</Link>

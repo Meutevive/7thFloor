@@ -1,9 +1,8 @@
-import react from 'react';
+import React from 'react';
 import  {useState, useEffect} from "react";
 import axios from "axios";
 
 import {FormNavbar} from "../../components/navbar/FormNavbar";
-import footer, {Footer} from "../../components/footer/Footer";
 import {Link} from "react-router-dom";
 
 
@@ -15,14 +14,19 @@ const MovieList = () => {
         const fetchMovies = async () => {
             try {
                 const response = await axios.get("http://localhost:8090/api/v1/films");
-                setMovies(response.data);
+                if (response.data && Array.isArray(response.data.content)) {
+                    setMovies(response.data.content);
+                } else {
+                    console.error("La réponse n'est pas un tableau :", response.data);
+                }
             } catch (error) {
                 console.error(error);
             }
         };
-
+    
         fetchMovies();
     }, []);
+    
 
 
     return (
@@ -36,9 +40,9 @@ const MovieList = () => {
                         <Link key={movie.id} to={`/films/film/${movie.id}`}>
 
                             <div key={movie._id} className="bg-gray text-black p-4 rounded">
-                                <img className="w-30 h-52 object-cover rounded"
-                                     src={`data:image/jpeg;base64,${movie.poster}`}
-                                     alt={movie.title}
+                                <img className="w-30 h-52 object-cover border-2 border-red-500 rounded"
+                                        src={`data:image/jpeg;base64,${movie.poster}`}
+                                        alt={movie.title}
                                 />
                                 <h3 className="text-l text-white font-bold mb-4 mt-4">{movie.title}</h3>
                                 <p className="text-red-600">Date de sortie :</p>

@@ -48,7 +48,7 @@ const Articles = () => {
                         {/* Affiche le cover de l'article */}
                         <div className="w-40">
                             <img
-                                className="object-fill w-40 h-52 rounded-md"
+                                className="object-fill w-40 h-52 rounded-md border-2 border-red-500"
                                 src={`data:image/jpeg;base64,${article.cover}`}
                                 alt={article._id}
                             />

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import react from "react";
 import {Button} from "../../components/buttons/Button";
 import StarRate from "../../assets/Svg/StarRate.svg";
@@ -38,7 +39,7 @@ const FilmNews = () => {
                             <div className="flex flex-col items-center space-y-4">
                                 <div className="w-24">
                                     <img
-                                        className="object-fill w-24 h-28 rounded-md items-center mt-4"
+                                        className="object-fill w-24 h-28 rounded-md border-2 border-red-500 items-center mt-4"
                                         src={`data:image/jpef;base64,${film.poster}`}
                                     />
                                 </div>
