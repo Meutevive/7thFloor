@@ -41,13 +41,13 @@ export const Accueil = (props) => {
           {/* LandingPage page container*/}
             <div>
                 <div className=" flex flex-col items-stretch justify-around font-small
-                             leading-3 text-white w-full bg-black h-full  space-y-5">
+                            leading-3 text-white w-full bg-black h-full  space-y-5">
                     {/*Navbar*/}
                     <FormNavbar/>
 
                     {/*film/serie/manga contents*/}
                     {/*doit défilier automatique, pour linstant il est statique*/}
-                     <FormGridFilm/>
+                    <FormGridFilm/>
 
 
                     {/*grid layout row and column layout*/}
